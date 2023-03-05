@@ -160,6 +160,16 @@ SUBMIT BTN
     color: #84D2F6;
 }
 
+/************************************
+    ERROR MSG
+************************************/ 
+
+.error-msg { 
+    display: none;
+    font-size:.75rem;
+    color:red;
+    text-align: center;
+}
 
 
 

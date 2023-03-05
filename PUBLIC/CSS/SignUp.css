@@ -188,6 +188,19 @@ SUBMIT BTN
 }
 
 
+/***********************************
+    ERROR MSG
+************************************/
+
+.error-msg { 
+    display: none;
+    font-size:.75rem;
+    color:red;
+    text-align: center;
+
+
+}
+
 
 
 @media (max-width:760px) {

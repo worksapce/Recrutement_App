@@ -24,33 +24,34 @@
         <h3 class="">Sign up to Hiring System</h3>
             <div class="main-form">
   
-                <form action="" class="form">
+                <form  method="post" class="form">
+                    <p class="error-msg"></p>
                     <div class="first-input">
                         <div class="input-wrapper">
                             <label for="firstName">First Name:</label>
-                            <input type="text" name="firstName" id="firstName">
+                            <input required type="text" name="firstName" id="firstName">
                         </div>
                         <div class="input-wrapper">
                             <label for="lastName">First Name:</label>
-                            <input type="text" name="lastName" id="lastName">
+                            <input required type="text" name="lastName" id="lastName">
                         </div>
                     </div>
                     <div class="input-wrapper">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" id="email">
+                        <input required type="email" name="email" id="email">
                     </div>
                     <div class="input-wrapper">
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password">
+                        <input required type="password" name="password" id="password">
                     </div>
                     <div class="input-wrapper">
                         <label for="VerifyPassword">Verify Password:</label>
-                        <input type="password" name="VerifyPassword" id="VerifyPassword">
+                        <input required type="password" name="VerifyPassword" id="VerifyPassword">
                     </div>
                     <div class="input-wrapper">
                         <label for="role">User Type:</label>
                         <select name="role" id="role">
-                            <option value="Candidate">Candidate</option>
+                            <option selected value="Candidate">Candidate</option>
                             <option value="RH">RH</option>
                         </select>
                     </div>
@@ -66,8 +67,6 @@
                    <div class="input-wrapper">
                         <p class="redirect-singIn">I do have an account <span class="singIn"><a href="./SignIn.php">Sing In</a></span></p>
                      </div>    
-
-                </form>
             </div>
 
         </div>

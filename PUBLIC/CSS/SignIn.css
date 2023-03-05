@@ -1,0 +1,193 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*,*::after,*::before { 
+
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+}
+
+body {
+    /* background: linear-gradient(115.63deg, rgba(0, 212, 255, 0) -12.21%, #090979 121.33%); */
+background: rgb(2,0,36);
+background: linear-gradient(327deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 2%, rgba(0,212,255,0.33665966386554624) 58%);
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+input{ 
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+/*****************************
+    MAIN CONTAINER
+*****************************/
+.main { 
+    /* background-color: aliceblue; */
+    max-width:80%;
+    min-height: 80vh;
+    margin:auto;
+    margin-top:4rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows:auto;
+    gap:1rem;
+
+}
+
+
+/********************************
+    LEFT SIDE
+********************************/
+
+.left-side { 
+    background-color: #84D2F6;
+    padding: 1rem .85rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+.CTA-header { 
+    color: #E7E7E7;
+}
+
+
+
+/******************************
+    RIGHT SIDE
+******************************/
+.right-side{ 
+    display:flex;
+    flex-direction: column;
+    /* !!! */
+    justify-content: center;
+    align-items: center;
+    gap:6%;
+    background-color: #FFFFFF;
+
+}
+
+.form { 
+    /* !!!! */
+    width:100%;
+    margin:auto;
+}
+
+
+label { 
+    display: block;
+    color:#777777;
+    font-weight: 700;
+    font-size:.72rem;
+    line-height: 1.4rem;
+
+}
+
+.input-wrapper{ 
+    margin:.75rem;
+    /* background:#84D2F6; */
+}
+
+
+.input-wrapper input { 
+     width:100%;
+  color: #333;
+  font-size: .85rem;
+  padding: .20rem .85rem;
+  background-color: rgb(255, 255, 255);
+  display: block;
+  border: 1px solid #CED4DA ;
+  transition: all 0.3s;
+}
+.input-wrapper input:focus{ 
+    outline: 1px solid orange;
+}
+
+
+/*******************************************
+SUBMIT BTN
+*******************************************/
+.input-btn-wrapper { 
+    display: flex;
+    justify-content: center;
+}
+
+.input-btn-wrapper input{ 
+
+    background-color:#E7B04E;
+    font-size:.75rem;
+    font-weight: 500;
+    border:none;
+
+    padding: .75rem 2rem;
+    color:#fff;
+    border-radius: 5px;
+    margin-top:.5rem;
+
+}
+
+
+/* right side h3 */
+.right-side h3 { 
+    color:#777777;
+    font-weight: 600;
+}
+
+
+/**************************************
+        Redirect sign Up 
+**************************************/
+
+.redirect-singUp { 
+
+    font-size:.75rem;
+}
+
+.redirect-singUp span { 
+    color:#84D2F6;
+}
+
+.redirect-singUp span a {
+
+    text-decoration: none;
+    color: #84D2F6;
+}
+
+/************************************
+    ERROR MSG
+************************************/ 
+
+.error-msg { 
+    display: none;
+    font-size:.75rem;
+    color:red;
+    text-align: center;
+}
+
+
+
+
+@media (max-width:760px) {
+
+
+
+   .main{ 
+    justify-content: center;
+    width:100%;
+    } 
+    .left-side{ 
+        display: none;
+    }
+
+    .right-side{ 
+     width:100vw;    
+    }
+    
+}

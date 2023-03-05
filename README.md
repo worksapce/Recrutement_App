@@ -20,3 +20,13 @@ L'application comprend les fonctionnalités suivantes :
 
 4- Structuration et organisation des informations des candidats pour que les recruteurs puissent les consulter dans leur tableau de bord.
 
+
+
+### FOR THIS PROJECT WE USE THE COMPOSER PACKAGE MANGER, THE PACKAGES WILL NOT BE INCLUDED IN THE GITHUB REPO.
+!PLEASE DOWNLOAD THE COMPOSER PACKAGE MANGER FROM THE OFFICIAL WEBSITE, OR FROM THE COMMANDED LINE
+[download from here!](https://getcomposer.org/download/)
+
+RUN THE COMMANDE : 
+`COMPOSER INSTALL`\
+THE VENDOR DIRECTORY WILL BE INSTALLED 
+

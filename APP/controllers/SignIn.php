@@ -8,3 +8,4 @@ http_response_code(200);
 if(isset($formData['email'])){ 
 echo "from the sign In page".$formData['email'];
 }
+

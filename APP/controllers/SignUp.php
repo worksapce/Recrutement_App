@@ -1,5 +1,12 @@
 <?php 
     require '../models/connectionDB.php';
+    require_once '../../vendor/autoload.php';
+                    use Dotenv\Dotenv;
+                    use Firebase\JWT\JWT;
+                    use Firebase\JWT\Key;
+
+    $dotenv = Dotenv::createUnsafeImmutable('../../');
+    $dotenv->load();
 
 $formData = json_decode(file_get_contents('php://input'), true);
 $status = 400; 
@@ -41,10 +48,22 @@ if(isset($formData['firstName'], $formData['lastName'],$formData['email'],$formD
                     $stmt->bindValue(':userRole', $Role);
                     $stmt->execute();
 
+                     // create a token and send it to the user email
+                    $payload = [
+                        'firstName' => $firstName, 
+                        'lastName' => $lastName, 
+                        'email' => $email,
+                        'exp' => time() + 36000,
+                    ]; 
+                    $Secret = getenv('JWT_SECRET') ;
+                    
+                    $token = JWT::encode($payload, $Secret , 'HS256');
+                    
                     $status  = 200;
                     $response = [ 
                         'success'=> true, 
                         'msg'=> 'User Added Successfully.', 
+                        'token'=>$token
                     ];
 
                 }else{ 

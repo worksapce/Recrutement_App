@@ -9,6 +9,7 @@ const errorMsg = document.querySelector('.error-msg')
 /***********************
  * POST FUNCTION 
  ************************/
+
 const PostData = async (url, formData) => { 
 
     return result = await fetch(url, { 
@@ -19,6 +20,7 @@ const PostData = async (url, formData) => {
         }
     })
 }
+
 
 
 

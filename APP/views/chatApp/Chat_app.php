@@ -42,7 +42,7 @@
           <!-- content profiles -->
           <div class="contacts">
             <!-- single contact profile -->
-            <div class="single-contact">
+            <!-- <div class="single-contact">
               <div class="profile-img">
                 <img src="../../../PUBLIC/Images/chatApp/profile-img1.png" alt="profile-img" />
               </div>
@@ -52,17 +52,15 @@
                   I’m a student in fsts , and working on this design
                 </p>
               </div>
-            </div>
-            <!-- render test profile -->
+            </div> -->
           </div>
 
           <!-- display only on mobile -->
-          <!-- <button class="slide-btn">Slide conversation</button> -->
         </div>
 
-        <!-- Converstion side -->
+        <!-- Conversation side -->
         <div class="converstion-container util">
-          <!-- dispaly Only on mobile:back-arow -->
+          <!-- display Only on mobile:back-aron -->
 
           <!-- top -->
           <div class="conversation-contact">
@@ -74,7 +72,7 @@
               <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" srcset="" />
             </div>
             <div class="profile-info">
-              <h3 class="contact-name">Oussama Jodar</h3>
+              <h3 class="contact-name profile-name">Oussama Jodar</h3>
               <p class="status">Stauts now</p>
             </div>
           </div>
@@ -194,3 +192,4 @@
     </main>
   </body>
 </html>
+

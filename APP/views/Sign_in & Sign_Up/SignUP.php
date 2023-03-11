@@ -24,29 +24,29 @@
         <h3 class="">Sign up to Hiring System</h3>
             <div class="main-form">
   
-                <form  method="post" class="form">
+                <form  action="/nextStep.php" method="post" class="form">
                     <p class="error-msg"></p>
                     <div class="first-input">
                         <div class="input-wrapper">
                             <label for="firstName">First Name:</label>
-                            <input required type="text" name="firstName" id="firstName">
+                            <input  type="text" name="firstName" id="firstName">
                         </div>
                         <div class="input-wrapper">
-                            <label for="lastName">First Name:</label>
-                            <input required type="text" name="lastName" id="lastName">
+                            <label for="lastName">last Name:</label>
+                            <input  type="text" name="lastName" id="lastName">
                         </div>
                     </div>
                     <div class="input-wrapper">
                         <label for="email">Email:</label>
-                        <input required type="email" name="email" id="email">
+                        <input  type="email" name="email" id="email">
                     </div>
                     <div class="input-wrapper">
                         <label for="password">Password:</label>
-                        <input required type="password" name="password" id="password">
+                        <input  type="password" name="password" id="password">
                     </div>
                     <div class="input-wrapper">
                         <label for="VerifyPassword">Verify Password:</label>
-                        <input required type="password" name="VerifyPassword" id="VerifyPassword">
+                        <input  type="password" name="VerifyPassword" id="VerifyPassword">
                     </div>
                     <div class="input-wrapper">
                         <label for="role">User Type:</label>

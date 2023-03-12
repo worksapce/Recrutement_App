@@ -1,5 +1,6 @@
 <?php 
     require '../models/connectionDB.php';
+    require '../../PUBLIC/util/sendEmail.php';
     require_once '../../vendor/autoload.php';
                     use Dotenv\Dotenv;
                     use Firebase\JWT\JWT;
@@ -58,13 +59,26 @@ if(isset($formData['firstName'], $formData['lastName'],$formData['email'],$formD
                     $Secret = getenv('JWT_SECRET') ;
                     
                     $token = JWT::encode($payload, $Secret , 'HS256');
-                    
+
+                    // send the email 
+                   $isSend = sendEmail($email, 'verify your email', 'verification url :  http://localhost/Recrutement_App/APP/views/verify.php?token='.$token  );
+                 
+                if($isSend){ 
+
                     $status  = 200;
                     $response = [ 
                         'success'=> true, 
                         'msg'=> 'User Added Successfully.', 
                         'token'=>$token
                     ];
+                }else 
+                { 
+                    $response = [ 
+                        'success'=> false, 
+                        'msg'=> 'We couldn\'t send verification Email.'
+                    ];
+                    
+                }
 
                 }else{ 
 

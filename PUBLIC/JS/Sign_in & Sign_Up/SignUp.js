@@ -10,15 +10,29 @@ const errorMsg = document.querySelector('.error-msg')
 /***********************
  * POST FUNCTION 
  ************************/
-const PostData = async (url, formData) => { 
+const PostData = async (url, formData, target) => { 
 
-    return result = await fetch(url, { 
+    const res = await fetch(url, { 
         method: 'POST', 
         body: JSON.stringify(formData), 
         headers : { 
         "Content-Type": "application/json",
         }
     })
+
+    const data= await res.json()
+    if(data.success){ 
+        console.log(data.token)
+        alert('successfully registered, please verify you Email')
+        // target.submit()
+    }else{
+        errorMsg.textContent = data.msg
+        errorMsg.style.display = 'block'
+        setTimeout(() => {
+        errorMsg.style.display = 'none'
+        }, 1500);
+
+    }
 }
 
 
@@ -38,22 +52,21 @@ form.addEventListener('submit', (event) => {
     const passwordV = password.value
     const VerifyPasswordV = VerifyPassword.value
     const userRoleV = userRole.value
-
-    //  form empty 
-    firstName.value  =  ""
-    lastName.value = ""
-    email.value= ""
-    password.value= ""
-    VerifyPassword.value= ""
-    userRole.value = ""
-
+    
+    console.log(passwordV, VerifyPasswordV)
     // verify the form data 
+    if(passwordV != VerifyPasswordV){ 
+        console.log('here....')
+          errorMsg.textContent = 'password did not match.'
+        errorMsg.style.display = 'block'
+        setTimeout(() => {
+        errorMsg.style.display = 'none'
+        }, 1500);
+    }
 
 
-
-    // send the data to the server ( controller)
     const ControllerUrl = '../../../APP/controllers/SignUp.php'
-
+    
     const formData = {
         firstName: firstNameV, 
         lastName:  lastNameV, 
@@ -63,40 +76,8 @@ form.addEventListener('submit', (event) => {
         userRole: userRoleV
      }
 
-
      // the the post function to send 
-     PostData(ControllerUrl, formData)
-     .then( response => { 
-        return response.text()
-    })
-    .then(text => { 
-        console.log(text)
-        errorMsg.textContent = text
-        errorMsg.style.display = "block"
-
-        // remove the error msg after 1000ms 
-        setTimeout(() => {
-           errorMsg.style.display = 'none' 
-        }, 1000);
-    })
-
-
-
-
+     PostData(ControllerUrl, formData, event.target)
 
 })
 
-
-
-
-
-
-
-
-
-
-
-
-// print test
-
-    // console.log(firstNameV, lastNameV, emailV , passwordV,VerifyPasswordV , userRoleV); 

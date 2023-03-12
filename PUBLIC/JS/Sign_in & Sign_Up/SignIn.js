@@ -9,18 +9,36 @@ const errorMsg = document.querySelector('.error-msg')
 /***********************
  * POST FUNCTION 
  ************************/
-
 const PostData = async (url, formData) => { 
 
-    return result = await fetch(url, { 
+    const res = await fetch(url, { 
         method: 'POST', 
         body: JSON.stringify(formData), 
         headers : { 
         "Content-Type": "application/json",
         }
     })
-}
 
+    const data = await res.json()
+    if(data.success){ 
+        console.log('data when success: ' , data)
+        event.submit();
+        
+    }else{ 
+        if(res.ok){ 
+             console.log(data.userRole)
+             userRole = 'Candidate' ? console.log('redirect candidat') : console.log('redirect rh')
+        }else{ 
+            console.log(data)
+            errorMsg.textContent = data.msg
+            errorMsg.style.display = 'block'
+                setTimeout(() => { 
+                    errorMsg.style.display = 'none'
+                },2000) 
+            }
+        }
+
+}
 
 
 
@@ -37,8 +55,6 @@ form.addEventListener('submit', (event) => {
    const passwordV = password.value
 
     //  form empty 
-    email.value= ""
-    password.value= ""
       // verify the form data 
 
 
@@ -52,29 +68,9 @@ form.addEventListener('submit', (event) => {
         password: passwordV, 
     }
 
-
+   
      // the the post function to send 
-     PostData(ControllerUrl, formData)
-     .then( response => { 
-        return response.text()
-    })
-    .then(text => { 
-        console.log(text)
-        errorMsg.textContent = text
-        errorMsg.style.display = "block"
-
-        // remove the error msg after 1000ms 
-        setTimeout(() => {
-           errorMsg.style.display = 'none' 
-        }, 1000);
-    })
-
-
-
+     PostData(ControllerUrl, formData, event.target)
 
 
 })
-
-
-// print test
-// console.log(firstNameV, lastNameV, emailV , passwordV,VerifyPasswordV , userRoleV); 

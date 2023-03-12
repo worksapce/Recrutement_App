@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['user'])){ 
+      header('Location: ./Sign_in & Sign_Up/SignIn.php');
+      exit;
+    }
+  
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +17,9 @@
 <body>
    welcome to the home page 
    <?php 
-    session_start();
     
      echo $_SESSION["user"]["fullName"];
    ?> 
+   <p><a href="./Sign_in & Sign_Up/SignOut.php">Sign out</a></p>
 </body>
 </html>

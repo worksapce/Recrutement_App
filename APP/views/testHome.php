@@ -11,7 +11,10 @@
    <?php 
     session_start();
     
-     echo $_SESSION["user"]["fullName"];
+     echo $_SESSION["user"]["id"];
+
    ?> 
+
+   <p><a href="./Sign_in & Sign_Up/SignOut.php">Sign out</a></p>
 </body>
 </html>

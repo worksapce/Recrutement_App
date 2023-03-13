@@ -1,5 +1,12 @@
 <?php
 
+    session_start();
+    if(!isset($_SESSION['user'])){ 
+        header('Location: SignIn.php');
+        exit;
+    }
+    
+
 
 require '../models/connectionDB.php';
 $request = json_decode(file_get_contents('php://input'), true);
@@ -13,7 +20,7 @@ if($request){
             'msg'=>'we couldn\'t find the user ...',
         ];
     }else{
-        $userId= $request['userId'];
+        $userId= $_SESSION['user']['id'];
         // connect to db 
         $connection = new connectDB();
         $stmt =$connection->conn->prepare('select user.* from user, contact where ( contact.`ID-USER1`=user.`ID-USER` or contact.`ID-USER2`=user.`ID-USER`) and ( contact.`ID-USER1`= :userId or contact.`ID-USER2`= :userId ) and `user`.`ID-USER`!= :userId ORDER by contact.`Date-contact` DESC');

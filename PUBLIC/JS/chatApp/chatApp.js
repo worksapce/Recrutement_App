@@ -6,6 +6,7 @@ const SingleContact = document.querySelectorAll(".single-contact");
 const ConversationContainer = document.querySelector(".conversation-body");
 const ConverstationBody = document.querySelector(".conversation-body");
 const contactName = document.querySelectorAll(".contact-name");
+const sendBox = document.querySelector('.typing-box') 
 
 /*****************************************
   SET THE SCROLL TO THE BOTTOM default  
@@ -73,9 +74,10 @@ slideBtn.forEach((el) => {
 /***************************************
   FUNCTION CHANGE CONVERSATION  info
  ***************************************/
-function changeContactInfo(fullName) {
+function changeContactInfo(fullName, IdContact) {
   const profileName = document.querySelector(".profile-name");
   profileName.textContent = fullName;
+  sendBox.setAttribute('id', IdContact)
 }
 
 /*************************************
@@ -168,19 +170,24 @@ const senderSingleMessage = (text) => {
 /******************************
         RENDER MESSAGES
 ******************************/
-function RenderMessages(groupeMessages) {
-  Object.entries(groupeMessages).forEach(([timestamp, groupe]) => {
-    groupe.reduce((prev, curr, i, a) => {
-      if (i === 0) {
-        if (curr.RECIVER == 2) console.log("display right", curr.BODY);
-        else console.log("Display Left:", curr.BODY);
-      } else {
-        if (a[i - 1].RECIVER == curr.RECIVER)
-          console.log("single right:", curr.BODY);
-        else console.log("Left: ", curr.BODY);
-      }
+function RenderMessages(groupeMessages, receiverName, IdReceiver) {
+    Object.entries(groupeMessages).forEach(([timestamp, groupe]) => {
+      groupe.forEach( message => { 
+        const time = new Intl.DateTimeFormat('default',
+        {
+            hour12: true,
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(message.send_at) 
+        console.log(message)
+
+          if(message.SENDER == IdReceiver){ 
+          ConversationContainer.innerHTML += receiverMessage(receiverName,time,message.BODY)
+          }else{ 
+            ConversationContainer.innerHTML += senderMessage(receiverName,time,message.BODY)
+          }
+      })
     });
-  });
 }
 
 /************************************
@@ -197,14 +204,14 @@ const GetMessages = async (sender, receiver) => {
   const data = await res.json();
 
   if (data.success) {
+    const IdReceiver = data.data['ID-USER']
     const fullName = `${data.data[1]} ${data.data[2]}`;
-    changeContactInfo(fullName);
-
+    changeContactInfo(fullName,IdReceiver);
     //messages
-    console.log(data.messages);
     const groupedMessages = groupMessages(data.messages);
-    console.log("grouped: ", groupedMessages);
-    RenderMessages(groupedMessages);
+
+    ConversationContainer.innerHTML = ''
+    RenderMessages(groupedMessages, fullName,IdReceiver );
   } else {
     alert(data.msg);
   }
@@ -223,19 +230,64 @@ contacts.addEventListener("click", (event) => {
 
     // the the contact information clicked
     const receiverId = event.target.id;
+    ConversationContainer.innerHTML =''
     GetMessages(2, +receiverId);
 
     // scroll bar to the bottom
+    setTimeout(() => {
     scroll.scrollTop = scroll.scrollHeight;
+    }, 200);
   }
 });
 
+/********************************
+    SEND MESSAGE ICON
+********************************/
+document.querySelector('.typing-icon').addEventListener('click', (e)=> { 
+
+  // get the id of the user and the input 
+  const IdContact = sendBox.getAttribute('id')
+  const sendInput = document.querySelector('#send-input')
+  const InputValue= sendInput.value
+
+  
+      // send a request to the controller
+  const SendMessage = async ()=>{
+      const res = await fetch("../../../APP/controllers/sendMessage.php", {
+          method: "POST",
+          body: JSON.stringify({ 
+            text:InputValue, 
+            receiverId:IdContact
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      const data = await res.json();
+
+      if(data.success){ 
+        console.log(data)
+        GetMessages(2, +IdContact);
+        sendInput.value  = ''
+        setTimeout(() => {
+          scroll.scrollTop = scroll.scrollHeight;
+          }, 1600);
+      }else{ 
+        console.log(data)
+      }
+   }
+
+   // send
+   SendMessage()
+
+})
 
 
-ConversationContainer.innerHTML += `
 
-    ${receiverMessage('oussama jodar', '11 AM', 'Lorem ipsum dolor sit amet consectetur adipisicing elit')}
-    ${senderMessage('salim amin','12 AM','Lorem ipsum dolor sit amet consectetur adipisicing elit.' )}
-    ${receiverMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor koadipisicing elit')}
-    ${receiverSingleMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor.')}
-`
+// ConversationContainer.innerHTML += `
+
+//     ${receiverMessage('oussama jodar', '11 AM', 'Lorem ipsum dolor sit amet consectetur adipisicing elit')}
+//     ${senderMessage('salim amin','12 AM','Lorem ipsum dolor sit amet consectetur adipisicing elit.' )}
+//     ${receiverMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor koadipisicing elit')}
+//     ${receiverSingleMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor.')}
+// `

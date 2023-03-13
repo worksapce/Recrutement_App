@@ -1,13 +1,15 @@
 <?php 
 
     require '../models/connectionDB.php';
+    session_start();
 
 $request = json_decode(file_get_contents('php://input'), true);
 $response ; 
 $status =400;
 
 if(isset($request['sender'], $request['receiver'])){ 
-    $sender= $request['sender'];
+    // $sender= $request['sender'];
+    $sender= $_SESSION['user']['id'];
     $receiver = $request['receiver'] ;
 
     $db=new  connectDB();

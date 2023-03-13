@@ -1,3 +1,9 @@
+<?php    	session_start();
+        if(!isset($_SESSION['user'])){
+              header('Location: ./../Sign_in & Sign_Up/SignIn.php');
+              exit;
+        }
+?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +25,7 @@
   </head>
   <body>
     <nav>
-      <h2>Logo</h2>
+      <h2><?= $_SESSION['user']['fullName'] ?></h2>
     </nav>
 
     <main class="main">
@@ -41,18 +47,7 @@
           </div>
           <!-- content profiles -->
           <div class="contacts">
-            <!-- single contact profile -->
-            <!-- <div class="single-contact">
-              <div class="profile-img">
-                <img src="../../../PUBLIC/Images/chatApp/profile-img1.png" alt="profile-img" />
-              </div>
-              <div class="profile-info">
-                <h3 class="contact-name">Oussama Jodar</h3>
-                <p class="last-msg">
-                  I’m a student in fsts , and working on this design
-                </p>
-              </div>
-            </div> -->
+               <!--contact here!  -->
           </div>
 
           <!-- display only on mobile -->
@@ -60,7 +55,6 @@
 
         <!-- Conversation side -->
         <div class="converstion-container util">
-          <!-- display Only on mobile:back-aron -->
 
           <!-- top -->
           <div class="conversation-contact">
@@ -72,105 +66,14 @@
               <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" srcset="" />
             </div>
             <div class="profile-info">
-              <h3 class="contact-name profile-name">Oussama Jodar</h3>
+              <h3 class="contact-name profile-name"></h3>
               <p class="status">Stauts now</p>
             </div>
           </div>
           <!-- end top -->
           <div class="conversation-body">
-            <div class="receiver-box">
-              <div class="profile-img">
-                <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" srcset="" />
-              </div>
-              <div class="">
-                <div class="receiver-info">
-                  <h3 class="receiver-name">Oussama Jodar</h3>
-                  <p class="status">12 PM</p>
-                </div>
-                <div class="receiver-msg">
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Vitae temporibus natus fugit dolor esse itaque est porro,
-                    nisi, reiciendis, ipsa facere dolorem. Unde illo eveniet aut
-                    architecto maxime voluptate est, optio, aspernatur error
-                    aperiam aliquam! Nulla dolores doloribus expedita.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!--  -->
-            <div class="receiver-box">
-              <div class="profile-img">
-                <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" srcset="" />
-              </div>
-              <div class="">
-                <div class="receiver-info">
-                  <h3 class="receiver-name">Oussama Jodar</h3>
-                  <p class="status">12 PM</p>
-                </div>
-                <div class="receiver-msg">
-                  <p>Lorem, ipsum dolor.</p>
-                </div>
-              </div>
-            </div>
-            <!-- end of rec box  -->
-            <div class="receiver-box">
-              <div class="profile-img">
-                <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" srcset="" />
-              </div>
-              <div class="">
-                <div class="receiver-info">
-                  <h3 class="receiver-name">Oussama Jodar</h3>
-                  <p class="status">12 PM</p>
-                </div>
-                <div class="receiver-msg">
-                  <p>Lorem, ipsum dolor.</p>
-                </div>
-              </div>
-            </div>
-            <!--  -->
-            <div class="receiver-msg-single">
-              <p>Lorem, ipsum dolor.</p>
-            </div>
-            <div class="receiver-msg-single">
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Placeat, explicabo qui officiis mollitia esse illum
-                exercitationem voluptatibus. Quam, dolores mollitia?
-              </p>
-            </div>
-            <!-- end of the reciver box -->
-            <!-- sender-container -->
-            <div class="sender-container">
-              <div class="sender-box">
-                <div class="">
-                  <div class="sender-info">
-                    <h3 class="sender-name">Oussama Jodar</h3>
-                    <p class="sender-date">12 PM</p>
-                  </div>
-                  <div class="sender-msg">
-                    <p>Lorem, ipsum dolor.</p>
-                  </div>
-                </div>
-                <div class="profile-img">
-                  <img
-                    src="../../../PUBLIC/Images/chatApp/profile-img1.png"
-                    alt=""
-                    srcset=""
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="sender-single-msg-wraper">
-              <div class="sender-msg-single">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-                  reprehenderit voluptates dolore.
-                </p>
-              </div>
-            </div>
-            <!-- end signle message -->
+           
+                 <!-- MESSAGES HERE!!  -->
           </div>
 
           <!-- typing input and send -->
@@ -178,11 +81,11 @@
             <input
               type="text"
               name="contact"
-              id="contact"
+             id="send-input" 
               placeholder="search contact"
             />
             <!-- add the icon search in here!! -->
-            <div class="typing-icon">
+            <div class="typing-icon" >
               <img src="../../../PUBLIC/Images/chatApp/paper-plane-solid1.png" alt="" srcset="" />
             </div>
           </div>

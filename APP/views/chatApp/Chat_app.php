@@ -1,4 +1,5 @@
-<?php    	session_start();
+<?php    	
+      session_start();
         if(!isset($_SESSION['user'])){
               header('Location: ./../Sign_in & Sign_Up/SignIn.php');
               exit;
@@ -25,27 +26,15 @@
   </head>
   <body>
     <nav>
-      <h2><?= $_SESSION['user']['fullName'] ?></h2>
+      <!-- <h2><?= $_SESSION['user']['fullName'] ?></h2> -->
     </nav>
 
     <main class="main">
       <div class="box">
         <!-- contact side -->
         <div class="contact-container util">
-          <!-- searcher  -->
-          <div class="search-box">
-            <input
-              type="search"
-              name="contact"
-              id="contact"
-              placeholder="search contact"
-            />
-            <!-- add the icon search in here!! -->
-            <div class="search-icon">
-              <i class="fas fa-search" style="color: #fff"></i>
-            </div>
-          </div>
-          <!-- content profiles -->
+
+                  <!-- content profiles -->
           <div class="contacts">
                <!--contact here!  -->
           </div>
@@ -77,18 +66,22 @@
           </div>
 
           <!-- typing input and send -->
+          <form class="form">
           <div class="typing-box">
             <input
               type="text"
               name="contact"
              id="send-input" 
-              placeholder="search contact"
+              placeholder="message ...."
             />
-            <!-- add the icon search in here!! -->
+            <!-- add the icon input in here!! -->
+           <button class='sendBtn'>
             <div class="typing-icon" >
               <img src="../../../PUBLIC/Images/chatApp/paper-plane-solid1.png" alt="" srcset="" />
             </div>
+          </button>
           </div>
+  </form>
           <!-- end of the search and send? -->
         </div>
       </div>

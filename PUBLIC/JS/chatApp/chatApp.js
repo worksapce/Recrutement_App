@@ -7,7 +7,11 @@ const ConversationContainer = document.querySelector(".conversation-body");
 const ConverstationBody = document.querySelector(".conversation-body");
 const contactName = document.querySelectorAll(".contact-name");
 const sendBox = document.querySelector('.typing-box') 
+const sendForm = document.querySelector('.form')
 
+console.log(sendForm)
+
+let userName;
 /*****************************************
   SET THE SCROLL TO THE BOTTOM default  
  ****************************************/
@@ -19,6 +23,7 @@ window.onload = function () {
     behavior: "smooth",
   });
 };
+
 
 /**********************
     RENDER PROFILES
@@ -75,9 +80,11 @@ slideBtn.forEach((el) => {
   FUNCTION CHANGE CONVERSATION  info
  ***************************************/
 function changeContactInfo(fullName, IdContact) {
+
   const profileName = document.querySelector(".profile-name");
   profileName.textContent = fullName;
   sendBox.setAttribute('id', IdContact)
+
 }
 
 /*************************************
@@ -88,13 +95,23 @@ function groupMessages(messages) {
   return (grouped = messages.reduce((groups, message) => {
     const timestamp = new Date(message.send_at);
     const minute = timestamp.toISOString().substr(0, 16);
-    if (!groups[minute]) {
-      groups[minute] = [];
+
+    console.log(message[0])
+  // console.log(groups[minute] && groups[minute][0][0])
+
+    if (groups[minute] && groups[minute][0][0] == message[0]) {
+      groups[minute].push({
+        ...message,
+        send_at: timestamp.getTime(),
+      });
+    }else{ 
+   groups[minute] = [];
+   groups[minute].push({
+    ...message,
+    send_at: timestamp.getTime(),
+  });
     }
-    groups[minute].push({
-      ...message,
-      send_at: timestamp.getTime(),
-    });
+    
     return groups;
   }, {}));
 }
@@ -172,19 +189,28 @@ const senderSingleMessage = (text) => {
 ******************************/
 function RenderMessages(groupeMessages, receiverName, IdReceiver) {
     Object.entries(groupeMessages).forEach(([timestamp, groupe]) => {
-      groupe.forEach( message => { 
+      groupe.forEach( (message, i) => { 
+
         const time = new Intl.DateTimeFormat('default',
         {
             hour12: true,
             hour: 'numeric',
             minute: 'numeric'
         }).format(message.send_at) 
-        console.log(message)
+
 
           if(message.SENDER == IdReceiver){ 
-          ConversationContainer.innerHTML += receiverMessage(receiverName,time,message.BODY)
+            
+          i==0 ? ConversationContainer.innerHTML += receiverMessage(receiverName,time,message.BODY):
+              ConversationContainer.innerHTML += receiverSingleMessage(message.BODY)
+            console.log(message.BODY)
           }else{ 
-            ConversationContainer.innerHTML += senderMessage(receiverName,time,message.BODY)
+          i==0 ? 
+
+            ConversationContainer.innerHTML += senderMessage(userName,time,message.BODY):
+            ConversationContainer.innerHTML += senderSingleMessage(message.BODY)
+            console.log(message.BODY)
+
           }
       })
     });
@@ -243,8 +269,10 @@ contacts.addEventListener("click", (event) => {
 /********************************
     SEND MESSAGE ICON
 ********************************/
-document.querySelector('.typing-icon').addEventListener('click', (e)=> { 
 
+sendForm.addEventListener('submit' ,(e) => { 
+
+  e.preventDefault();
   // get the id of the user and the input 
   const IdContact = sendBox.getAttribute('id')
   const sendInput = document.querySelector('#send-input')
@@ -277,17 +305,36 @@ document.querySelector('.typing-icon').addEventListener('click', (e)=> {
       }
    }
 
+
+
    // send
    SendMessage()
+
+
 
 })
 
 
+
+/*********************************
+  Get the user Name  
+ *********************************/
+
+const getUserName = async ()=>{ 
+
+  const res  = await fetch('../../../PUBLIC/util/getUserName.php')
+   userName = await res.json()
+}
+getUserName()
 
 // ConversationContainer.innerHTML += `
 
 //     ${receiverMessage('oussama jodar', '11 AM', 'Lorem ipsum dolor sit amet consectetur adipisicing elit')}
 //     ${senderMessage('salim amin','12 AM','Lorem ipsum dolor sit amet consectetur adipisicing elit.' )}
 //     ${receiverMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor koadipisicing elit')}
+//     ${receiverSingleMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor koadipisicing elit')}
 //     ${receiverSingleMessage('oussama jodar', '12 AM', 'Lorem ipsum dolor.')}
+//     ${senderMessage('salim amin','12 AM','Lorem ipsum dolor sit amet consectetur adipisicing elit.' )}
+//     ${senderSingleMessage('salim amin','12 AM','Lorem ipsum dolor sit amet consectetur adipisicing elit.' )}
+    
 // `

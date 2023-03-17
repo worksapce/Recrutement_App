@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap');
+
+*,*::after,*::before{ 
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    
+}
+
+
+body  { 
+    background-color: aqua;
+    text-align: center;
+    width: 100%;
+    height:100vh;
+    background-color: #F5F7FB;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+input{ 
+    font-family:'Poppins', sans-serif;
+}
+
+
+/*****************
+    slider
+*****************/
+
+main { 
+
+    
+    width: 100%;
+    margin-top:2rem;
+    margin-inline: auto;
+    /* background: #F3F3F3; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    
+}
+
+.box 
+{ 
+    max-width:70%;
+    width:80%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows:1fr;
+    gap:2rem;
+    margin-inline:auto;
+    
+}
+
+
+.contact-container { 
+    background-color: #FAFAFA;
+    box-shadow: 0px 2px 9px 1px rgba(0, 0, 0, 0.25);
+}
+
+.converstion-container{ 
+    /* background-color: #FAFAFA; */
+    box-shadow: 0px 2px 9px 1px rgba(0, 0, 0, 0.25);
+
+}
+
+/*************************
+    Slider Btn
+************************/
+.slide-btn{ 
+    display:none;
+}
+
+.back-btn{ 
+    border:none;
+    color: #fff;
+}
+.back-btn:hover{ 
+    color:#59A5D8;
+
+}
+
+
+
+
+/********************
+    util
+********************/
+
+
+
+/*********************************
+    NavBar
+*********************************/
+nav { 
+    display:flex;
+    justify-content: space-between;
+    background-color: #F5F7FB;
+
+}
+
+nav ul { 
+    display: flex;
+}
+
+
+/*************************************
+    contact container style
+*************************************/
+
+
+/* search */
+.search-box { 
+    width:100%;
+    /* min-height: 2.5rem; */
+    display:grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: auto;
+    padding: 10px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+.search-box .search-icon{ 
+    background-color:#84D2F6;
+    border-radius: 4px;
+}
+
+.search-box input{ 
+    border:none;
+    display: none;
+    
+}
+.search-box input:hover,:focus{ 
+    border:none;
+    outline: none;
+    border-bottom: 1px solid steelblue;
+}
+
+
+.contacts{ 
+    /* max-height: 70vh; */
+    overflow:scroll;
+    overflow-x:hidden;
+}
+
+
+
+/* single contact */
+.single-contact{ 
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    text-align: start;
+    margin-block:.85rem;
+    background-color:#F4F4F4;
+    padding: .58rem .85rem;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    transition: .3s ease-in;
+}
+.single-contact:hover{ 
+    color:#fff;
+    background-color: #91E5F6;
+}
+
+
+
+.profile-info .contact-name{ 
+    font-size:.75rem;
+}
+
+.profile-info p {
+
+    font-size: .43rem;
+    color:#6C6C6C;
+
+}
+
+/* profile image user multiple time */
+
+.profile-img{ 
+
+    width: 2.7rem;
+    height: 2.8rem;
+    border-radius:50%;
+    overflow:hidden;
+
+} 
+
+.profile-img img{ 
+
+    width:100%;
+    height: 100%;
+}
+
+/***************************************
+CONVERSATION CONTAINER
+****************************************/
+.status { 
+    font-size: .43rem;
+    color:#6C6C6C;   
+}
+
+.conversation-contact{ 
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    text-align: start;
+    margin-bottom:.85rem;
+    background-color:#FAFAFA;
+    padding: .58rem 2rem;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    transition: .3s ease-in;
+
+}
+
+
+
+
+
+/***************************************
+CONV BODY 
+***************************************/
+
+.conversation-body { 
+    height:30rem;
+    /* height: 80%; */
+    overflow:scroll;
+    overflow-x:hidden;
+    padding-bottom: 3rem;
+}
+
+
+.receiver-box{ 
+    display: flex;
+    align-items: flex-start;
+
+    gap:.85rem;
+    padding-inline:2rem;
+    margin-bottom:.85rem;
+
+
+}
+
+.receiver-box .profile-img{
+    width:2.3rem;
+    height: 2.4rem;
+    min-width: 2.3rem;
+    min-height: 2.4rem;
+
+}
+
+.receiver-info{
+
+    display:flex;
+    gap:10px;
+    align-items: center;
+
+    /* background-color: #84D2F6; */
+}
+
+.receiver-info .receiver-name{ 
+    font-size:.75rem;
+}
+.receiver-msg{ 
+    margin-top:4px;
+    background-color:#EDEDF4;
+    padding: .3rem .85rem;  
+    border-radius: 0 7px  4px 7px;
+}
+
+
+.receiver-msg p{ 
+    font-size: .85rem;
+    font-weight: 300;
+
+}
+
+.receiver-msg-single {
+    margin-left:4.8rem;
+    margin-right: 2rem;
+    margin-bottom:.85rem;
+    width:fit-content;
+    font-size: .85rem;
+    font-weight: 300;
+
+    background-color:#EDEDF4;
+    padding: .3rem .85rem;  
+    border-radius: 0 7px  4px 7px;
+}
+
+
+/*****************************************
+SENDER STYLE
+*****************************************/
+
+.sender-box {  
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap:.85rem;
+    padding-inline:2rem;
+    /* margin-bottom:.85rem; */
+
+
+}
+
+
+.sender-info{ 
+
+    display:flex;
+    gap:10px;
+    align-items: center;
+}
+.sender-name{ 
+
+    font-size:.75rem;
+}
+
+.sender-msg { 
+ 
+    margin-top:4px;
+    background-color:#59A5D8;
+    color:#fff;
+    padding: .3rem .85rem;  
+    border-radius:7px 0px 4px 7px ;
+}
+
+.sender-box p{ 
+    font-size: .85rem;
+    font-weight: 300;
+}
+
+.sender-box .profile-img{
+    width:2.3rem;
+    height: 2.4rem;
+    min-width: 2.3rem;
+    min-height: 2.4rem;
+
+}
+
+
+.sender-date { 
+    font-size: .43rem !important;
+    color:#6C6C6C;   
+
+}
+
+.sender-single-msg-wraper{ 
+    display: flex;
+    justify-content: flex-end;
+    margin-top: .58rem;
+}
+
+
+.sender-msg-single{ 
+     margin-right:4.8rem;
+    margin-left: 2.2rem;
+    margin-bottom:.85rem;
+    width:fit-content;
+    font-size: .85rem;
+    font-weight: 300;
+    background-color:#59A5D8;
+    color:#fff;
+    padding: .3rem .85rem;  
+    border-radius:7px 0px 4px 7px ;
+   
+}
+
+
+/* search */
+.typing-box { 
+    width:100%;
+    display:grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: auto;
+    padding: 10px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    background-color: #FFFFFF;
+    
+}
+.typing-box .typing-icon{ 
+    /* background-color:#84D2F6; */
+    border-radius: 4px;
+}
+
+
+.typing-box input{ 
+    border:none;
+    width:80%;
+    
+}
+.typing-box input:focus{ 
+
+    outline: none;
+}
+
+.sendBtn{ 
+    border: none;
+    outline: none;
+    background-color: inherit;
+}
+
+
+
+
+
+
+
+
+
+/************************************
+    applay the slider on mobile
+************************************/
+
+@media (max-width:850px) {
+  
+    .slide-btn{ 
+        display:block
+    }
+    
+
+    body, main, .box, .conversation-body, .converstion-container{ 
+        /* height: 100vh; */
+        /* max-height: 100vh; */
+    }
+    main.slide  .converstion-container .conversation-contact{ 
+        position: fixed;
+        top:0;
+        left:0;
+        right:0;
+    }
+    main.slide  .converstion-container .typing-box{ 
+        position: fixed;
+        bottom:0;
+        left:0;
+        right:0;
+
+    }
+
+    
+  main.slide  .conversation-body{ 
+        position:fixed;
+        top: 4.1rem;
+        left:0;
+        right:0;
+        height:87%;
+        overflow: scroll;
+        overflow-x:hidden;
+        background-color: #91E5F6;
+        padding-block:1.5rem;
+        padding-bottom: 9rem;
+    }
+    
+    main { 
+        position: relative;
+        top:0;
+        left:0;
+        width:100%;
+        grid-template-columns: 1fr;
+        grid-template-rows:1fr;
+        transition:  .3s 0s all ease-in-out;
+    }
+
+        /* slid anmation  */
+    main.slide .contact-container{ 
+        top:0;
+        left:-100%;
+    }
+    main.slide .converstion-container{ 
+        /* !!! */
+        
+        top:0%;
+        left:0%;
+    }
+
+    .contacts{ 
+        /* max-height: 100vh; */
+        
+    }
+
+    
+.contact-container { 
+    position: absolute;
+     width:100%;
+
+    top:0;
+    left:0;
+    transition:  .3s 0s all ease-in-out;
+}
+
+
+.converstion-container{ 
+    position: absolute ;
+    width:100%;
+    top:0;
+    left:-100%;
+    transition:  .3s 0s all ease-in-out;
+
+}
+
+
+nav{ 
+    display: none;
+}
+
+    
+}
+
+
+/******************************
+    CUSTOME SCROLLE BAR 
+******************************/
+
+::-webkit-scrollbar {
+  width: 10px;
+ 
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 15px;    
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
+
+  /* Prevent Others element , evnet */
+
+  .single-contact * { 
+    pointer-events: none;
+}

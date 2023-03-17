@@ -108,5 +108,4 @@ if($formData && isset($formData['email'], $formData['password'])){
 }
 
 http_response_code($status);
-
 echo json_encode($response);

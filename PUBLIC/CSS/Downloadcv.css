@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    
+    }
+    
+    .container {
+    background-color:white;
+    border: 2px solid rgb(169, 169, 169);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+     border-radius: 2%;
+    width: 120vh;
+    height: 70vh;
+    text-align: center;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: auto;
+    
+    
+    }
+    
+    nav{
+        max-width: 15%;
+        width: 100%;
+        height: 100vh;
+
+    background-color: rgb(146, 185, 248);
+    /* padding-bottom: 29.7%; */
+    
+    }
+    button{
+       
+        height: 45px;
+        max-width: 200px;
+        width: 100%;
+        border: none;
+        outline: none;
+        color: #fff;
+        border-radius: 5px;
+      background: linear-gradient(to right,  #bfe8f1,#6dcfe3);
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
+    .button{
+        height: 30px;
+        
+       
+        color: #fff;
+        border-radius: 5px;
+        margin: 25px 0;
+        background-color: #5e698a;
+        
+        }
+    
+    button :hover{
+        background-color :rgb(111, 31, 185);
+        
+        cursor: pointer;
+    }
+    
+   
+    .navbar-btn {
+        box-shadow: none;
+        outline: none !important;
+        border: none;
+    }
+    
+    .line {
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dashed #ddd;
+        margin: 40px 0;
+    }
+    
+    
+    
+    
+    ul ul a {
+        font-size: 0.9em !important;
+        padding-left: 30px !important;
+        background: #6d7fcc;
+    }
+    
+    ul.CTAs {
+        padding: 20px;
+    }
+    
+    ul.CTAs a {
+        text-align: center;
+        font-size: 0.9em !important;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    
+    a.download {
+        background: #fff;
+        color: #7386D5;
+    }
+    
+    a.article,
+    a.article:hover {
+        background: #6d7fcc !important;
+        color: #fff !important;
+    }
+    
+    
+    #content {
+        width: 100%;
+        min-height: 100vh;
+        transition: all 0.3s;
+    }
+    
+  
+    
+    
+    .container{
+    
+    
+        margin-top: 12%;
+    }
+
+
+    .lie{
+
+        margin-top: 20%;
+
+    }
+    .load{
+
+       color :rgb(111, 31, 185);
+    }
+
+
+
+.all{
+display: flex;
+
+}
+    
+
+.text{
+
+    margin-top: 50%;
+}
+
+
+.tele{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 5%;
+    margin-top: 80%;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: 2px solid black;
+    outline: none;
+    color: #000000;
+    border-radius: 5px;
+  background: linear-gradient(to right,  #c7e7ee,#91E5F6);
+    transition: all 0.3s linear;
+    cursor: pointer;
+}

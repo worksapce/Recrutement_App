@@ -4,7 +4,7 @@
 
 
 
-
+//le meme description que dans downloadcv
 
 function afficherImage() {
     const input = document.getElementById('photo');
@@ -52,7 +52,7 @@ function afficherImage() {
   
   const deg = document.getElementById('degre')
   console.log(deg)
-  
+  //ajouter champ langue et degre
   btn_l.addEventListener('click', (event) => {
       event.preventDefault();
       const newLangue = langue.cloneNode(true)
@@ -63,7 +63,7 @@ function afficherImage() {
       
   })
   
-  
+  //ajouter champ competance
   
   btn_c.addEventListener('click', (event) => {
       event.preventDefault();
@@ -89,7 +89,7 @@ function afficherImage() {
   
   
   
-  
+  //ajouter champ parcours scolaire
   Btn_sc.addEventListener('click',(event)=>{
     event.preventDefault();
     const newparcours_sc =parcour_sc.cloneNode(true)
@@ -99,22 +99,19 @@ function afficherImage() {
   
   
   
-  
+  //supprimer champ competance
   Btn_s_rm.addEventListener('click', (event) => {
     event.preventDefault();
-  
-    // Get the last child element of the element with id "parcours_sc"
+  //dernier element ajouter
     const lastChild = competances.lastElementChild;
-    // If there is at least one child element
     if (lastChild) {
-      // Remove the last child element
       competances.removeChild(lastChild);
     }
   });
   
   
   
-  
+  //ajouter champ parcours professionnelle
   Btn_pr.addEventListener('click',(event)=>{
       event.preventDefault();
       const newparcours_pr =parcours_pr_container.cloneNode(true)
@@ -134,7 +131,7 @@ function afficherImage() {
   const btn_sc = document.getElementById('Btn-sc');
   const btn_sc_rm = document.getElementById('Btn-sc_rm');
   const parcours_sc_container = document.querySelector('.parcours_sc_container');
-  
+  //ajouter un champ parcours_sc_container
   btn_sc.addEventListener('click', (event) => {
     event.preventDefault();
     const newc = parcours_sc_container.cloneNode(true);
@@ -142,7 +139,7 @@ function afficherImage() {
   });
   
   
-  
+  //supprimer champ parcours professionnelle 
   const btn_pr = document.getElementById('Btn-pr');
   const btn_pr_rm = document.getElementById('Btn-pr_rm');
   const parcours_pr_container = document.querySelector('.parcours_pr_container');
@@ -155,7 +152,7 @@ function afficherImage() {
   });
   
   
-  
+  // supprimer  champ parcours_sc 
   btn_sc_rm.addEventListener('click', (event) => {
       event.preventDefault();
       const dernier = parcours_sc.lastChild;
@@ -186,7 +183,7 @@ function afficherImage() {
   
   
   
-  
+  //supprimer champ langue
   const btn_rm = document.getElementById('Btn-l_rm');
   btn_rm.addEventListener('click', (event) => {
     event.preventDefault();

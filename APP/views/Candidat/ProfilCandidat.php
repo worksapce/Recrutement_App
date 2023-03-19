@@ -1,5 +1,17 @@
 
-<? require '../controllers/ProfilCandidat.php';?>
+<?php
+
+
+  session_start();
+    if(!isset($_SESSION['user'])){ 
+      header('Location: ../Sign_in & Sign_Up/SignIn.php');
+      exit;
+    }
+
+    $userId = $_SESSION['user']['id'];
+ require 'C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/ProfilCandidat.php';
+ 
+ ?>
 
 
 <!DOCTYPE html>
@@ -9,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../PUBLIC/CSS/ProfilCandidat.css">
+    <link rel="stylesheet" href="../PUBLIC/CSS/Candidat/ProfilCandidat.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -52,6 +64,7 @@
                       <p class="text-muted font-size-sm"></p>
                       
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -159,7 +172,11 @@
                     </div>
                   </div>
                   <hr>
-                  
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info " target="__blank" href=".//UpdateCv.php">Edit</a>
+                    </div>
+                  </div>
                 </div>
               </div>
 

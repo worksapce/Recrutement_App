@@ -3,14 +3,13 @@ console.log(text)
 
 let textt = text.replace(/(\r\n|\n|\r)/gm, ""); // Remplace les retours à la ligne par une chaîne vide
 console.log(textt)
-let textet = textt.replace(/<br\s*\/?>/gi, "");
+let textet = textt.replace(/<br\s*\/?>/gi, "");//remplacer les espace par champ vide
 console.log(textet)
 
 let texte = textet.replace(/\s/g, "");
 console.log(texte)
 
-const cvTexte = "CVINFORMATIONPERSONNELLE:nom:oussamaprenom:hanbazemail:oussama@gmail.comadresse:casablancatel:099999Compétances:Nodejs.react.javascript.Langue:Française.arab.espagnol";
-
+//
 const infoRegex = /CVINFORMATIONPERSONNELLE:Nom:(.*?)prenom:(.*?)email:(.*?)adresse:(.*?)tel:(.*?)Compétances:(.*?)\.(.*?)\.(.*?)\.(.*?)Langue:(.*?)\.(.*?)\.(.*?)\.(.*?)\.(.*?)\.([^.]+)\./;
 
 // Exécution de l'expression régulière sur la chaîne de texte

@@ -8,8 +8,8 @@ class connectDB {
     function __construct() {
     
         $this->hostName= "localhost";
-        $this->port = "3308";
-        $this->dbname = "RecrutementDb";
+        $this->port = "3306";
+        $this->dbname = "recrutementdb";
         $this->username = "root";
         $this->password = "";
         try {

@@ -47,6 +47,8 @@ if($formData && isset($formData['email'], $formData['password'])){
                                 "ROLE"=>$isExist['type'],
                             ];
 
+                        
+
                     }else{ 
                         session_start();
                         $_SESSION["id"] = $isExist['ID-USER'];
@@ -61,7 +63,7 @@ if($formData && isset($formData['email'], $formData['password'])){
 
                 }else{ 
 
-                    $status  = 401;
+                    $status  = 400;
                     $response = [ 
                         'success'=>false, 
                         'msg'=> 'Please verify your email',
@@ -72,7 +74,7 @@ if($formData && isset($formData['email'], $formData['password'])){
 
             }else{ 
             
-                $status  = 401;
+                $status  = 400;
                 $response = [ 
                     'success'=>false, 
                     'msg'=> 'Incorrect password',
@@ -83,7 +85,7 @@ if($formData && isset($formData['email'], $formData['password'])){
 
 
         }else{
-         $status  = 401;
+         $status  = 400;
         $response =  [
             'success'=> false, 
             'msg'=> 'Unauthorize.',
@@ -108,6 +110,7 @@ if($formData && isset($formData['email'], $formData['password'])){
     ];
 
 }
+
 
 http_response_code($status);
 echo json_encode($response);

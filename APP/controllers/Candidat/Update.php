@@ -1,7 +1,6 @@
 <?php 
 
-
-include  "C:/xampp/htdocs/Recrutement_App-main/APP/models/Affiche.php";
+  require '../../models/Affiche.php';
     
 //ouvrir la session
 session_start();

@@ -49,7 +49,6 @@ $port = '3308';
         $stmt = $con->prepare("SELECT * FROM `poste-rechercher-initial` WHERE id_RH =?");
         $stmt->execute([$id]);
         $row = $stmt->fetch();
-
         return $row['poste'];
 
     }

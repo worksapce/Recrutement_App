@@ -9,13 +9,32 @@ const contactName = document.querySelectorAll(".contact-name");
 const sendBox = document.querySelector('.typing-box') 
 const sendForm = document.querySelector('.form')
 
-console.log(sendForm)
+
+
+
+/***********************************************
+      GET THE RECEIVER ID FROM THE QUERY PARAM
+ ************************************************/
+const queryString = window.location.search;
+console.log(queryString);
+
+const urlParams = new URLSearchParams(queryString);
+const receiver_id = urlParams.get('id_receiver')
+
+console.log('receiver id:  ',receiver_id);
+
+/*****************************************
+      VARIABLE TO USE 
+ ****************************************/
+
+
 
 let userName;
 let imageRec;
 /*****************************************
   SET THE SCROLL TO THE BOTTOM default  
  ****************************************/
+
 const scroll = document.querySelector(".conversation-body");
 window.onload = function () {
   scroll.scrollTo({
@@ -242,7 +261,11 @@ const GetMessages = async (sender, receiver,image) => {
   const data = await res.json();
 
   if (data.success) {
-    const IdReceiver = data.data['ID-USER']
+
+    // if the not exist from the user
+    const IdReceiver = receiver_id  || data.data['ID-USER']
+    console.log(IdReceiver)
+
     const fullName = `${data.data[1]} ${data.data[2]}`;
     // add image
     changeContactInfo(fullName,IdReceiver,image);
@@ -255,6 +278,9 @@ const GetMessages = async (sender, receiver,image) => {
     alert(data.msg);
   }
 };
+
+// @!!!!!!!
+GetMessages(2,receiver_id)
 
 /****************************
 EVENT LISTENER ON THE PROFILE
@@ -292,6 +318,7 @@ sendForm.addEventListener('submit' ,(e) => {
   e.preventDefault();
   // get the id of the user and the input 
   const IdContact = sendBox.getAttribute('id')
+  console.log(' the send message: ',IdContact)
   const sendInput = document.querySelector('#send-input')
   const InputValue= sendInput.value
 

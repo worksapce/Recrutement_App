@@ -5,6 +5,7 @@ candidateCards.forEach((candidateCard) => {
 	candidateCard.addEventListener('click', () => {
 		// Get candidate's ID from the card
 		detailsCard.classList.toggle('active');
+
 		main.classList.add('active');
 		const candidateId = candidateCard.getAttribute('data-id');
 		console.log('Candidate ID:', candidateId); // Log candidate ID
@@ -29,7 +30,7 @@ candidateCards.forEach((candidateCard) => {
 				//const candidate = JSON.parse(responseText);
 				const candidate = responseText;
         console.log('ddd', candidate);
-				const skillsList = candidate.skills.map((skill) => `<li class='skill'>${skill.text}</li>`).join('');
+				const skillsList = candidate.skills.map((skill) => `<li class='skill'>${skill.competance}</li>`).join('');
 				let ParProfList = '';
 				candidate.parcours_professionnel &&
 					(ParProfList = candidate.parcours_professionnel
@@ -86,7 +87,8 @@ console.log(LangList);
                 <input type="hidden" name="candidateId" value="${candidateId}">
                 <button type="submit" class="btn_cv btn_msg" > Cv ${candidateId} </button>
               </form>
-             <button class="btn_cv" id='uu'  data-id="${candidateId}" >Contacter </button>
+
+             <button class="btn_cv" id='uu'  data-id="${candidate[8]}" >Contacter </button>
              <a class="btn_email" href="mailto:${candidate.email}" target="_blank"
               > Email</a>
           </div>

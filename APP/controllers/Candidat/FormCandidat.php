@@ -10,11 +10,11 @@ $userId = $_SESSION['id'];
 
 
  //importer affiche qui contient les requee
- include  "C:/xampp/htdocs/Recrutement_App-main/APP/models/Affiche.php";
- include "C:/xampp/htdocs/Recrutement_App-main/APP/controllers/Candidat/Donwloadcv.php";
-//ouvre session
+    include '../../models/Affiche.php';
+    include '../../controllers/Candidat/Donwloadcv.php';
 
-//$ff=$contenu_pdf;
+
+
 
 if(isset($_POST['envoyer'])){
 
@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $allowTypes = array('pdf'); 
                             if(in_array($fileType, $allowTypes)){ 
                                 // Inclure le fichier du chargeur automatique 
-                                include 'C:/xampp/htdocs/Recrutement_App-main/vendor/autoload.php';
+                                require '../../../vendor/autoload.php';
                                 
                                 // Initialise et charge la bibliothèque PDF Parser 
                                 $parser = new \Smalot\PdfParser\Parser(); 

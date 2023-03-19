@@ -1,7 +1,18 @@
 <?php
 require '../../models/RH_models/connectionDB.php';
-$user = getUserById(18);
-$recruiter = getRecruteurById(18);
+
+  session_start();
+    if(!isset($_SESSION['user'])){ 
+      header('Location: ../Sign_in & Sign_Up/SignIn.php');
+      exit;
+    }
+
+    $userId = $_SESSION['user']['id'];
+
+
+
+$user = getUserById($userId);
+$recruiter = getRecruteurById($userId);
 
 ?>
 
@@ -27,7 +38,7 @@ $recruiter = getRecruteurById(18);
                 <a href="./RecruteurPage.php"> <ion-icon name="home"></ion-icon> Accueil </a>
                 <a href="./ProfileRH.php"> <ion-icon name="person"></ion-icon>Profile </a>
                 <a href="#"> <ion-icon name="mail"></ion-icon>Messagerie </a>
-                <a href="#"> <ion-icon name="log-out-outline"></ion-icon>Log out </a>
+                <a href="../Sign_in & Sign_Up/SignOut.php"> <ion-icon name="log-out-outline" ></ion-icon>Log out </a>
             </div>
             <!-- profile RH -->
             <div class="profile">

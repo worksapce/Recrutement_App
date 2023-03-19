@@ -4,12 +4,13 @@
 
   session_start();
     if(!isset($_SESSION['user'])){ 
-      header('Location: ../Sign_in & Sign_Up/SignIn.php');
+       header('Location: ../Sign_in & Sign_Up/SignIn.php');
       exit;
     }
 
     $userId = $_SESSION['user']['id'];
- require 'C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/ProfilCandidat.php';
+//  require 'C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/ProfilCandidat.php';
+ require '../../controllers/Candidat/ProfilCandidat.php'
  
  ?>
 
@@ -22,6 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../PUBLIC/CSS/Candidat/ProfilCandidat.css">
+
+    <script  nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -41,7 +44,10 @@
           
             <ol class="breadcrumb text-center">
 <center>
-           Bienvenue sur  Votre profil , veuillez consuler votre score et prend quelques astuces  ⬇️  </center>
+           Bienvenue sur  Votre profil , veuillez consuler votre score et prend quelques astuces  <button class="logout" ><a href="../Sign_in & Sign_Up/SignOut.php" >logout</a></button>
+
+                <a href="../chatApp/Chat_app.php" > <ion-icon name="mail"></ion-icon>Messagerie </a>
+            ⬇️  </center>
             </ol>
           </nav>
           <!-- /Breadcrumb -->
@@ -285,7 +291,7 @@
   </thead>
   <tbody>
     <?php 
-    while($row = $result3->fetch()) { 
+    while($row = $result31->fetch()) { 
       $societe = $row["societe"];
       $position = $row["position"];
       $date_debut = $row["date-debut"];

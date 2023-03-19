@@ -22,23 +22,32 @@ const PostData = async (url, formData,event) => {
     const data = await res.json()
     if(data.success){ 
         console.log('data when success: ' , data)
+        console.log(data.user.type)
+        data.user.type == 'RH' ?   window.location.href = "http://localhost/recrutement_App/APP/views/RH_views/RecruteurPage.php" : window.location.href = "http://localhost/recrutement_App/APP/views/Candidat/ProfilCandidat.php"
         console.log(data)
         // event.submit();
-        
+
     }else{ 
+
         if(res.ok){ 
              console.log(data.userRole)
-             userRole = 'Candidate' ? window.location.href = "http://localhost/Recrutement_App/APP/views/Candidat/Downloadcv.php" : window.location.href = "http://localhost/Recrutement_App/APP/views/Candidat/inscriptionRh.php"
+
+             data.userRole  == 'RH' ?  window.location.href = "http://localhost/Recrutement_App/APP/views/Candidat/inscriptionRh.php":window.location.href = "http://localhost/Recrutement_App/APP/views/Candidat/Downloadcv.php" 
         
             console.log(data)
             errorMsg.textContent = data.msg
             errorMsg.style.display = 'block'
-                setTimeout(() => { 
-                    errorMsg.style.display = 'none'
-                },2000) 
-            }
+            //     setTimeout(() => { 
+            //         errorMsg.style.display = 'none'
+            //     },2000) 
+        } else { 
+        
+            console.log(data)
+            errorMsg.textContent = data.msg
+            errorMsg.style.display = 'block'
+ 
         }
-
+    }
 }
 
 
@@ -49,7 +58,7 @@ const PostData = async (url, formData,event) => {
 
 form.addEventListener('submit', (event) => { 
 
-    event.preventDefault()
+    event.preventDefault();
 
     // get the values 
    const emailV = email.value

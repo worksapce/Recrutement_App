@@ -1,7 +1,19 @@
 <?php
 require '../../models/RH_models/connectionDB.php';
-$user = getUserById(18);
-$recruiter = getRecruteurById(18);
+
+  session_start();
+    if(!isset($_SESSION['user'])){ 
+      header('Location: ../Sign_in & Sign_Up/SignIn.php');
+      exit;
+    }
+
+    $userId = $_SESSION['user']['id'];
+
+
+
+
+$user = getUserById($userId);
+$recruiter = getRecruteurById($userId);
 $id_Rh= $recruiter['id_RH'];    
 
 $societe = $recruiter['societe'];
@@ -21,7 +33,7 @@ if (isset($_POST['envoyer'])) {
     $competancec = $_POST['competancec'];
     $poste = $_POST['poste'];
 
-    updateRHParam($societe, $secteur, $competancea, $competanceb, $competancec, $poste, $user_id ,$id_Rh) ;
+    updateRHParam($societe, $secteur, $competancea, $competanceb, $competancec, $poste, $userId ,$id_Rh) ;
 
   
      header("Location: RecruteurPage.php ");

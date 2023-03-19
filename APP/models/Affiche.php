@@ -1,8 +1,9 @@
 <?php
-include "C:/xampp/htdocs/Recrutement_App-main/APP/models/connectionDB.php";
+    include 'c:/xampp/htdocs/Recrutement_App/APP/models/connectionDB.php';
+
+
 
 //ici on creer des fonction permettant de supprimer et inserer et afficher les donné des table dand bdd
-
 function clients($id) {
    
 //creer instance 

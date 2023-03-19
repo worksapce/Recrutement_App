@@ -21,8 +21,8 @@ if ($request) {
             'msg' => 'we couldn\'t find the user ...',
         ];
     } else {
-        $userId = $_SESSION['user']['id'];
 
+        $userId = $_SESSION['user']['id'];
 
         // connect to db 
         $connection = new connectDB();
@@ -75,22 +75,8 @@ if ($request) {
             'msg' => 'the request is successfully completed ',
             'data' =>$data
         ]; 
-     
-        // photo 
-        // $stmt = $connection->conn->prepare("SELECT 
-        // COALESCE(client.photo, rh.photo) AS photo,
-        // COALESCE(`client`.`id-user`, rh.`id-user`) AS id
-        // FROM user
-        //  LEFT JOIN client ON user.`ID-USER` = client.`id-user`
-        // LEFT JOIN rh ON user.`ID-USER` = rh.`id-user`
-        // WHERE user.`ID-USER` = ");
 
-        // // $stmt->bindValue(":userId", $userId);
-        // $stmt->execute();
-        // $photo = $stmt->fetch();
-
-
-        $status = 200;
+       $status = 200;
         $response = [
             'success' => true,
             'msg' => 'the request is successfully completed ',

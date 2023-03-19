@@ -1,11 +1,24 @@
 <?php 
 
-include  "C:/xampp/htdocs/Recrutement_App-main/APP/models/connectionDB.php";
-//ouvre session et importer le id
-@session_start();
-$id=$_SESSION['id_candidat'];
+    include '../../models/connectionDB.php';
 
+@session_start();
+
+
+$userId = $_SESSION['user']['id'];
 $conn = new connectDB();
+$stmt = $conn->conn->prepare('select id_candidat from client where `id-user`= :userId');
+$stmt->bindValue(":userId", $userId);
+$stmt->execute();
+$id = $stmt->fetch();
+$id = $id['id_candidat'];
+
+
+// $id=$_SESSION['id_candidat'];
+
+
+
+
 
 $sql = "SELECT nom, prenom, email, addres, tel ,photo FROM client where id_candidat=$id";  
 $result = $conn->conn->query($sql); // Exécution de la requête avec la méthode query() de PDO
@@ -77,39 +90,51 @@ while($row = $result4->fetch()) {
     $langue_score=($langue_score_inter*$result4->rowCount() )/3;
 
 
-
-$sql3 = "SELECT * FROM `parcours-professionelle` where id_candidat=$id";  
-$result3 = $conn->conn->query($sql3);
-$prof_score=$result3->rowCount() ;
-
-$moyennedate=0;
-while ($row =$result3 ->fetch()) {
-            
-            $date_debut = $row['date-debut']; 
-            $date_fin = $row['date-fin'];
-               
-             $moyennedate+=($date_fin-$date_debut);
-} 
-$moyennedate/=$result3->rowCount() ;
-$ss=$prof_score*$moyennedate/2;
-$prof_score=$ss;
-//
-
-$sql2 = "SELECT *FROM `parcours-scolaire` where id_candidat=$id";  
-$result2 = $conn->conn->query($sql2);
-$scol_score=$result2->rowCount() ;
-
-$moyenedate=0;
-while ($row =$result3 ->fetch()) {
-            
-            $date_debut = $row['date-debut'];
-            $date_fin = $row['date-fin'];
-
-             $moyenedate+=($date_fin-$date_debut);
-} 
-$moyenedate/=$result2->rowCount() ;
-$sss=$scor_score*$moyenedate/2;
-$scol_score=$sss;
+    $sql3 = "SELECT * FROM `parcours-professionelle` where id_candidat=$id";  
+    $result3 = $conn->conn->query($sql3);
+    $result31 = $conn->conn->query($sql3);
+    
+    $prof_score=$result3->rowCount() ;
+    
+    $moyennedate=0;
+    while ($row = $result3->fetch()) {
+        $date_debut = strtotime($row['date-debut']);
+        $date_fin = strtotime($row['date-fin']);
+    
+        //$heure_debut = (int) date('H', $date_debut);
+        //$heure_fin = (int) date('H', $date_fin);
+      // echo $heure_debut;
+       
+        $moyennedate += ($date_fin - $date_debut);
+        
+    }
+     $moyennedate/=(3600*24);
+    
+    $moyennedate/=$result3->rowCount() ;
+    $ss=$prof_score*$moyennedate/400;
+    $prof_score=$ss;
+    //
+    
+    $sql2 = "SELECT *FROM `parcours-scolaire` where id_candidat=$id";  
+    $result2 = $conn->conn->query($sql2);
+    $result0 = $conn->conn->query($sql2);
+    $scol_score=$result2->rowCount() ;
+    $moyenedate=0;
+    while ($row =$result0 ->fetch()) {
+       
+        $date_debut = strtotime($row['date-debut']);
+        $date_fin = strtotime($row['date-fin']);
+        
+                $date_debute = $row['date-debut'];
+                $date_fine = $row['date-fin'];
+                 //echo ($date_fin-$date_debut);
+                 $moyenedate+=($date_fin-$date_debut);
+               //  echo $moyenedate;
+    } 
+    $moyenedate/=(3600*24);
+    $moyenedate/=$result2->rowCount() ;
+    $sss=$scol_score*$moyenedate/600;
+    $scol_score=$sss;
 
 
 //calculer le score avec chaque partie dans le cv a un coefficient

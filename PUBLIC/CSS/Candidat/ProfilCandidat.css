@@ -95,3 +95,16 @@ table{
     background-color: white;
 }
 
+
+
+.logout{ 
+    background-color: steelblue;
+color: #fff;
+}
+
+
+.logout a { 
+    text-decoration: none;
+    color:inherit;
+}
+

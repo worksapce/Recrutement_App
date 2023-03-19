@@ -30,7 +30,7 @@
         <h3 class="">Sign up to Hiring System</h3>
             <div class="main-form">
   
-                <form  action="/nextStep.php" method="post" class="form">
+                <form  action="./SignIn.php" method="post" class="form">
                     <p class="error-msg"></p>
                     <div class="first-input">
                         <div class="input-wrapper">

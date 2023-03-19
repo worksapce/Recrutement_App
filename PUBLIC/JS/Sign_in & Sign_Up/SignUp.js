@@ -24,8 +24,9 @@ const PostData = async (url, formData, target) => {
     if(data.success){ 
         console.log(data.token)
         alert('successfully registered, please verify you Email')
-        // target.submit()
-    }else{
+         target.submit()
+    }else{  
+        
         errorMsg.textContent = data.msg
         errorMsg.style.display = 'block'
         setTimeout(() => {

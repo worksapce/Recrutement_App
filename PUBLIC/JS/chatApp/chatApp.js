@@ -12,6 +12,7 @@ const sendForm = document.querySelector('.form')
 console.log(sendForm)
 
 let userName;
+let imageRec;
 /*****************************************
   SET THE SCROLL TO THE BOTTOM default  
  ****************************************/
@@ -29,11 +30,11 @@ window.onload = function () {
     RENDER PROFILES
 **********************/
 
-const RenderProfile = (id, fullName, lastMessage) => {
+const RenderProfile = (id, fullName, lastMessage, image) => {
   contacts.innerHTML += `
           <div class="single-contact" id="${id}" >
                       <div class="profile-img">
-                          <img src="../../../PUBLIC/Images/chatApp/profile-img1.png" alt="profile-img">
+                      <img src=${image}  alt="profile-img">
                       </div>
                       <div class="profile-info">
                           <h3 class="contact-name">${fullName}</h3>
@@ -55,11 +56,18 @@ const GetContact = async () => {
     },
   });
   const data = await res.json();
+  console.log(data)
 
   if (data.success) {
+
     data.data.forEach((el) => {
-      RenderProfile(el["ID-USER"], el.Nom + " " + el.Prenom, "hello from here");
-    });
+      console.log(el.Nom)
+      let image ;
+
+          el.photo  ? image = el.photo : image = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+           RenderProfile(el.id, el.Nom + " " + el.Prenom, "hello from here",image );
+       });
+
   } else {
     contacts.textContent = data.msg;
   }
@@ -79,13 +87,16 @@ slideBtn.forEach((el) => {
 /***************************************
   FUNCTION CHANGE CONVERSATION  info
  ***************************************/
-function changeContactInfo(fullName, IdContact) {
+function changeContactInfo(fullName, IdContact,image) {
 
   const profileName = document.querySelector(".profile-name");
   profileName.textContent = fullName;
+  const profileImage = document.querySelector('.img-profile')
+  profileImage.setAttribute('src',image)
   sendBox.setAttribute('id', IdContact)
 
 }
+
 
 /*************************************
   FUNCTION GROUPE MESSAGES BY MINUIT
@@ -120,11 +131,11 @@ function groupMessages(messages) {
         MESSAGES BOX 
 ******************************/
 
-const receiverMessage = (fullName, time, text) => {
+const receiverMessage = (fullName, time, text,image) => {
   return `
   <div class="receiver-box">
   <div class="profile-img">
-    <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" />
+    <img src=${image} alt="" />
   </div>
   <div class="">
     <div class="receiver-info">
@@ -147,7 +158,7 @@ const receiverSingleMessage = (text) => {
   `;
 };
 
-const senderMessage = (fullName,time,text) => {
+const senderMessage = (fullName,time,text,image) => {
   return`
   <div class="sender-container">
   <div class="sender-box">
@@ -162,9 +173,9 @@ const senderMessage = (fullName,time,text) => {
     </div>
     <div class="profile-img">
       <img
-        src="../../../PUBLIC/Images/chatApp/profile-img1.png"
+        src=${image}
         alt=""
-        srcset=""
+        class="img-profile"
       />
     </div>
   </div>
@@ -187,7 +198,7 @@ const senderSingleMessage = (text) => {
 /******************************
         RENDER MESSAGES
 ******************************/
-function RenderMessages(groupeMessages, receiverName, IdReceiver) {
+function RenderMessages(groupeMessages, receiverName,IdReceiver,image) {
     Object.entries(groupeMessages).forEach(([timestamp, groupe]) => {
       groupe.forEach( (message, i) => { 
 
@@ -201,25 +212,27 @@ function RenderMessages(groupeMessages, receiverName, IdReceiver) {
 
           if(message.SENDER == IdReceiver){ 
             
-          i==0 ? ConversationContainer.innerHTML += receiverMessage(receiverName,time,message.BODY):
-              ConversationContainer.innerHTML += receiverSingleMessage(message.BODY)
+          i==0 ? ConversationContainer.innerHTML += receiverMessage(receiverName,time,message.BODY,image):
+              ConversationContainer.innerHTML += receiverSingleMessage(message.BODY,image)
             console.log(message.BODY)
           }else{ 
           i==0 ? 
 
-            ConversationContainer.innerHTML += senderMessage(userName,time,message.BODY):
+            ConversationContainer.innerHTML += senderMessage(userName,time,message.BODY,imageRec):
             ConversationContainer.innerHTML += senderSingleMessage(message.BODY)
             console.log(message.BODY)
 
+            
           }
       })
     });
 }
 
+
 /************************************
   MESSAGE AND CONTACT INFORMATION  
 ***********************************/
-const GetMessages = async (sender, receiver) => {
+const GetMessages = async (sender, receiver,image) => {
   const res = await fetch("../../../APP/controllers/messages.php", {
     method: "POST",
     body: JSON.stringify({ sender, receiver }),
@@ -232,12 +245,13 @@ const GetMessages = async (sender, receiver) => {
   if (data.success) {
     const IdReceiver = data.data['ID-USER']
     const fullName = `${data.data[1]} ${data.data[2]}`;
-    changeContactInfo(fullName,IdReceiver);
+    // add image
+    changeContactInfo(fullName,IdReceiver,image);
     //messages
     const groupedMessages = groupMessages(data.messages);
 
     ConversationContainer.innerHTML = ''
-    RenderMessages(groupedMessages, fullName,IdReceiver );
+    RenderMessages(groupedMessages, fullName,IdReceiver,image);
   } else {
     alert(data.msg);
   }
@@ -256,8 +270,12 @@ contacts.addEventListener("click", (event) => {
 
     // the the contact information clicked
     const receiverId = event.target.id;
+    console.log(event.target.childNodes[1].childNodes[1])
+    let image = event.target.childNodes[1].childNodes[1]
+     image = image.getAttribute('src')
+     console.log(image)
     ConversationContainer.innerHTML =''
-    GetMessages(2, +receiverId);
+    GetMessages(2, +receiverId,image);
 
     // scroll bar to the bottom
     setTimeout(() => {
@@ -320,13 +338,17 @@ sendForm.addEventListener('submit' ,(e) => {
   Get the user Name  
  *********************************/
 
-const getUserName = async ()=>{ 
+const getUserName = async () => { 
 
   const res  = await fetch('../../../PUBLIC/util/getUserName.php')
-   userName = await res.json()
-}
-getUserName()
+   const data = await res.json()
+   userName = data.userName;
+  imageRec = data.photo
 
+  
+}
+
+getUserName()
 // ConversationContainer.innerHTML += `
 
 //     ${receiverMessage('oussama jodar', '11 AM', 'Lorem ipsum dolor sit amet consectetur adipisicing elit')}

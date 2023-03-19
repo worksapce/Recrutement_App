@@ -52,7 +52,7 @@
             </div>
 
             <div class="profile-img">
-              <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt="" srcset="" />
+              <img src="../../../PUBLIC/Images/chatApp/pexels-photo-771742.jpeg" alt=""  class="img-profile"/>
             </div>
             <div class="profile-info">
               <h3 class="contact-name profile-name"></h3>

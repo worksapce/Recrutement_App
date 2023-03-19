@@ -1,5 +1,5 @@
 <?php
-
+//recevoir les score 
 session_start();
 $monTableau = $_SESSION['monTableau'];
 

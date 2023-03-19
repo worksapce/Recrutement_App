@@ -22,7 +22,8 @@ const PostData = async (url, formData,event) => {
     const data = await res.json()
     if(data.success){ 
         console.log('data when success: ' , data)
-        event.submit();
+        console.log(data)
+        // event.submit();
         
     }else{ 
         if(res.ok){ 

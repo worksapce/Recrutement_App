@@ -134,8 +134,8 @@ function groupMessages(messages) {
 const receiverMessage = (fullName, time, text,image) => {
   return `
   <div class="receiver-box">
-  <div class="profile-img">
-    <img src=${image} alt="" />
+  <div class="profile-img rec-img">
+    <img src=${image} alt=""  />
   </div>
   <div class="">
     <div class="receiver-info">
@@ -213,8 +213,7 @@ function RenderMessages(groupeMessages, receiverName,IdReceiver,image) {
           if(message.SENDER == IdReceiver){ 
             
           i==0 ? ConversationContainer.innerHTML += receiverMessage(receiverName,time,message.BODY,image):
-              ConversationContainer.innerHTML += receiverSingleMessage(message.BODY,image)
-            console.log(message.BODY)
+              ConversationContainer.innerHTML += receiverSingleMessage(message.BODY)
           }else{ 
           i==0 ? 
 
@@ -260,7 +259,7 @@ const GetMessages = async (sender, receiver,image) => {
 /****************************
 EVENT LISTENER ON THE PROFILE
 ****************************/
-
+let image ;
 contacts.addEventListener("click", (event) => {
   event.stopPropagation();
 
@@ -271,7 +270,7 @@ contacts.addEventListener("click", (event) => {
     // the the contact information clicked
     const receiverId = event.target.id;
     console.log(event.target.childNodes[1].childNodes[1])
-    let image = event.target.childNodes[1].childNodes[1]
+      image = event.target.childNodes[1].childNodes[1]
      image = image.getAttribute('src')
      console.log(image)
     ConversationContainer.innerHTML =''
@@ -296,7 +295,7 @@ sendForm.addEventListener('submit' ,(e) => {
   const sendInput = document.querySelector('#send-input')
   const InputValue= sendInput.value
 
-  
+ 
       // send a request to the controller
   const SendMessage = async ()=>{
       const res = await fetch("../../../APP/controllers/sendMessage.php", {
@@ -313,8 +312,9 @@ sendForm.addEventListener('submit' ,(e) => {
 
       if(data.success){ 
         console.log(data)
-        GetMessages(2, +IdContact);
-        sendInput.value  = ''
+ 
+ GetMessages(2, +IdContact,image);
+sendInput.value  = ''
         setTimeout(() => {
           scroll.scrollTop = scroll.scrollHeight;
           }, 1600);
@@ -322,8 +322,6 @@ sendForm.addEventListener('submit' ,(e) => {
         console.log(data)
       }
    }
-
-
 
    // send
    SendMessage()

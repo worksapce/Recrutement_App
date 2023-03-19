@@ -28,7 +28,7 @@
         <div class="right-side">
             <h3 class="">Sign In to Hiring System</h3>
             <div class="main-form">
-                <form action="../../views/chatApp/Chat_app.php" method="post"  class="form">
+                <form action="" method="post"  class="form">
                     <!-- error message -->
                     <p class="error-msg"></p>
                     <div class="input-wrapper">

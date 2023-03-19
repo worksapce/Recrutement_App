@@ -1,8 +1,7 @@
 
 
 <?php 
-require '../models/connectionDB.php';
-echo"jdjdjdjdjdjdjd";
+require '../../APP/models/RH_models/connectionDB.php';
 session_start();
 if (isset($_SESSION['pdf_file'])) {
     // Récupérer le contenu du fichier PDF
@@ -17,7 +16,7 @@ if (isset($_SESSION['pdf_file'])) {
 }
 
 
-require_once "connectionDB.php";
+// require_once "connectionDB.php";
 
 
 

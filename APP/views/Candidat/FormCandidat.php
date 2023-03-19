@@ -2,8 +2,8 @@
 
 
 
-<? require '../../controllers/FormCandidat.php';
-
+<?php require 'C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/FormCandidat.php';
+ require "C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/Donwloadcv.php"
 ?>
 
 <!DOCTYPE html>
@@ -12,20 +12,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../PUBLIC/CSS/FormCandidat.css">
+    <link rel="stylesheet" href="../../../PUBLIC/CSS/Candidat/FormCandidat.css">
     <title>Document</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- <<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-          <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
-
+   
 </head>
 <body style=" background: linear-gradient(to right,  #c7e7ee,#91E5F6); "> 
     
 
-    
-
-
+ 
 
 
 
@@ -57,12 +53,23 @@
          
 
                  
-        <h2 style="margin-top: 2%; color :    color: #59A5D8;">Information personnelle</h2>
+        <h2 style="margin-top: 2%;   color: #59A5D8;">Information personnelle</h2>
         <div class="fieldset"> 
             <div class="ligne">
                 
                <input type="text" name="nom" placeholder="entrer votre nom"  id="nom" >
-                <input type="text" name="prenom" placeholder="entrer votre prenom" id="prenom"> 
+                <input type="text"  name="prenom" placeholder="entrer votre prenom" id="prenom"> 
+                <!-- <input style="visibility: hidden;" disabled type="text" name="cv" placeholder="entrer votre prenom" id="prenom" value="     />  -->
+                <!-- <input style="visibility:hidden;" disabled type="text" name="cv" placeholder="entrer votre prenom" id="prenom" value="<?php 
+                    
+                 //   function cv($contenu_pdf){ 
+                 //       return $contenu_pdf;
+                 //   }
+                 // echo cv($contenu_pdf)
+
+                ?>" /> -->
+
+
             </div>
             <br> 
             <div class="info">
@@ -73,11 +80,15 @@
                 <br> 
                 <div class="ligne">
                     <input type="tel"    name="tel" placeholder="entrer votre numéro de télephone"  id="tel"> 
+                    <input type="text"    name="poste_actuel" placeholder="entrer votre poste actuel"  id="poste actuel"> 
+
                 </div>
+
+
                 <br> 
                 
                
-             <h2 style="color :    color: #59A5D8;">Langue</h2>
+             <h2 style="    color: #59A5D8;">Langue</h2>
              <div id="languesss">
              <div class="langue">
         <input type="text" name="langue_[]" style="width:42vh" placeholder="Entrer votre langue" id="langue">
@@ -92,7 +103,7 @@
 
                 <br> 
                 <div class="ligne">
-                    <h2 style="color :    color: #59A5D8;">Compétances</h2>
+                    <h2 style="   color: #59A5D8;">Compétances</h2>
                     <div id="competance">
                     <input type="text" name="skill[]" placeholder="entrer votre Compétances" id="competances" > 
                      </div>
@@ -107,7 +118,7 @@
 
 
             <div class="pa-sc">
-                <h2 style="color :    color: #59A5D8;">Parcours scolaire</h2>
+                <h2 style="   color: #59A5D8;">Parcours scolaire</h2>
                 <div class="ligne">
                     <div id="parcour_sc">
                     <div id="parcour_sc_container"> 
@@ -130,7 +141,7 @@
             </div>
             
         <div class="pa-pr">
-            <h2 style="color :    color: #59A5D8;"> Parcours Professionelle</h2> 
+            <h2 style="   color: #59A5D8;"> Parcours Professionelle</h2> 
             
             
                 <div class="ligne">

@@ -1,20 +1,14 @@
 <?php 
 
-require '../models/connectionDB.php';
+include  "C:/xampp/htdocs/Recrutement_App-main/APP/models/connectionDB.php";
+//ouvre session et importer le id
+@session_start();
+$id=$_SESSION['id_candidat'];
 
-session_start();
-$id = $_SESSION['id'];
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "recrutement";
-
-// Connexion à la base de données en utilisant l'extension PDO
-//$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn = new connectDB();
 
 $sql = "SELECT nom, prenom, email, addres, tel ,photo FROM client where id_candidat=$id";  
-$result = $conn->query($sql); // Exécution de la requête avec la méthode query() de PDO
+$result = $conn->conn->query($sql); // Exécution de la requête avec la méthode query() de PDO
 
 
 
@@ -33,9 +27,9 @@ if ($result->rowCount() > 0) {
     echo "0 results";
 }
 
-
+//importer les infos competance et calculer le score
 $sql = "SELECT competance FROM competances where id_candidat=$id";  
-$result = $conn->query($sql); // Exécution de la requête avec la méthode query() de PDO
+$result = $conn->conn->query($sql); // Exécution de la requête avec la méthode query() de PDO
 
 $competance_score=$result->rowCount() ;
 
@@ -61,11 +55,11 @@ if ($result->rowCount() > 0) {
 
 
 
-
+//importer les donné from database et calculer le score du langue
 
 $sql4 = "SELECT *FROM langue where id_candidat=$id";  
-$result4 = $conn->query($sql4);
-$result5 = $conn->query($sql4);
+$result4 = $conn->conn->query($sql4);
+$result5 = $conn->conn->query($sql4);
 
 $langue_score=0 ;
 $lang=0;
@@ -85,25 +79,47 @@ while($row = $result4->fetch()) {
 
 
 $sql3 = "SELECT * FROM `parcours-professionelle` where id_candidat=$id";  
-$result3 = $conn->query($sql3);
+$result3 = $conn->conn->query($sql3);
 $prof_score=$result3->rowCount() ;
 
-
-
-
-
+$moyennedate=0;
+while ($row =$result3 ->fetch()) {
+            
+            $date_debut = $row['date-debut']; 
+            $date_fin = $row['date-fin'];
+               
+             $moyennedate+=($date_fin-$date_debut);
+} 
+$moyennedate/=$result3->rowCount() ;
+$ss=$prof_score*$moyennedate/2;
+$prof_score=$ss;
+//
 
 $sql2 = "SELECT *FROM `parcours-scolaire` where id_candidat=$id";  
-$result2 = $conn->query($sql2);
+$result2 = $conn->conn->query($sql2);
 $scol_score=$result2->rowCount() ;
 
+$moyenedate=0;
+while ($row =$result3 ->fetch()) {
+            
+            $date_debut = $row['date-debut'];
+            $date_fin = $row['date-fin'];
+
+             $moyenedate+=($date_fin-$date_debut);
+} 
+$moyenedate/=$result2->rowCount() ;
+$sss=$scor_score*$moyenedate/2;
+$scol_score=$sss;
+
+
+//calculer le score avec chaque partie dans le cv a un coefficient
      $coefficient=14;
      $scoref=((($scol_score*3)+($prof_score*5)+($langue_score*2)+($competance_score*4)) / $coefficient)*10;
 
  $score=intval($scoref);
      
 
-// Définit le tableau associatif
+// Définit le tableau pour envoyer les donné au session
 $monTableau = array(
     'scol_score' => $scol_score,
     'prof_score' => $prof_score,
@@ -113,10 +129,10 @@ $monTableau = array(
 );
 
 $_SESSION['monTableau'] = $monTableau;
-
+    //modifier le score qui est initialiser au 0
      $sql = "UPDATE `client` SET `score` = ? WHERE `id_candidat` = ?";
 
-$stmt = $conn->prepare($sql);
+$stmt = $conn->conn->prepare($sql);
 $stmt->bindParam(1, $score);
 $stmt->bindParam(2, $id);
 $stmt->execute();

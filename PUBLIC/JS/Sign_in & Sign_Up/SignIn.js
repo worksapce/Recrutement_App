@@ -28,8 +28,8 @@ const PostData = async (url, formData,event) => {
     }else{ 
         if(res.ok){ 
              console.log(data.userRole)
-             userRole = 'Candidate' ? console.log('redirect candidat') : console.log('redirect rh')
-        }else{ 
+             userRole = 'Candidate' ? window.location.href = "http://localhost/Recrutement_App/APP/views/Candidat/Downloadcv.php" : window.location.href = "http://localhost/Recrutement_App/APP/views/Candidat/inscriptionRh.php"
+        
             console.log(data)
             errorMsg.textContent = data.msg
             errorMsg.style.display = 'block'

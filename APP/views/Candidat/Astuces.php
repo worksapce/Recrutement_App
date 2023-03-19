@@ -1,7 +1,7 @@
 <?php
 
-
-require '../controllers/Astuces.php';
+//importer fichier astuces
+require 'C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/Astuces.php';
 
 ?>
 
@@ -9,7 +9,7 @@ require '../controllers/Astuces.php';
 <html>
 <head>
 	<title>Page avec bordure</title>
-    <link rel="stylesheet" href="../../../PUBLIC/CSS/Astuces.css">
+    <link rel="stylesheet" href="../../../../PUBLIC/CSS/Candidat/Astuces.css">
     
 </head>
 <body>
@@ -36,7 +36,7 @@ require '../controllers/Astuces.php';
       
     ?>
     <center>
-    <a href="../profil.php"> ⬅️ profil </a></center>
+    <a href="../ProfilCandidat.php"> ⬅️ profil </a></center>
     </div>
 </body>
 </html>

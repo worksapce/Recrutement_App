@@ -1,31 +1,12 @@
-<?php
 
-// Ouvrir une connexion à la base de données
+<?php 
+include "C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/Donwloadcv.php"
 
-// Vérifier si un fichier a été téléchargé
-if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] == 0) {
-    // Récupérer le contenu du fichier PDF
-    $fichier_pdf = fopen($_FILES['pdf_file']['tmp_name'], "rb");
-    $contenu_pdf = fread($fichier_pdf, filesize($_FILES['pdf_file']['tmp_name']));
-    fclose($fichier_pdf);
 
-    // Stocker le contenu du fichier PDF dans une variable de session
-    session_start();
-    $_SESSION['pdf_file'] = $contenu_pdf;
-    header("Location: index.php");
-  exit();
-}
+
 
 
 ?>
-
-
-
-
-
-
-
-
 
 
 
@@ -42,23 +23,12 @@ if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] == 0) {
     <title>Document</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../../PUBLIC/CSS/Downloadcv.css">
+    <link rel="stylesheet" href="../../../PUBLIC/CSS/Candidat/Downloadcv.css">
 
 </head>
 
 <body>
-<!--     
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="downloadcv.css">
-    <title>Document</title>
-   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"> --> 
+
    
 </head>
 <body  style=" background: linear-gradient(to right,  #c7e7ee,#91E5F6);"> 
@@ -71,7 +41,7 @@ if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] == 0) {
    <div id="text">
         <ul class="list-unstyled CTAs">
             
-            <a class="tele" href="../../../PUBLIC/Images/cvExemple.pdf" download>Télécharger le fichier PDF</a>
+            <a class="tele" href="../../../PUBLIC/Images/cvExemple.pdf" download>Exemple CV 📁</a>
             
            
         </ul>
@@ -79,7 +49,7 @@ if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] == 0) {
         
         <ul class="list-unstyled CTAs">
             
-                <a class="tele" href="./views/oussama/FormCandidat.php" class="download">Allez vers Formulaire</a class="tele">
+                <a class="tele" href="../Candidat/FormCandidat.php" class="download">Allez vers Formulaire ➡️</a class="tele">
             
            
         </ul>
@@ -97,7 +67,7 @@ if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] == 0) {
 
 
 <div class="container">
-    <form action="../oussama/FormCandidat.php" method="post" enctype="multipart/form-data" id="form">
+    <form action="../Candidat/FormCandidat.php" method="post" enctype="multipart/form-data" id="form">
 
             
             

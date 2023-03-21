@@ -1,7 +1,7 @@
 <?php
 require '../../models/RH_models/connectionDB.php';
 
-  session_start();
+  @session_start();
     if(!isset($_SESSION['user'])){ 
       header('Location: ../Sign_in & Sign_Up/SignIn.php');
       exit;

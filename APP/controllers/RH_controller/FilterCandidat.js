@@ -9,10 +9,41 @@ const skillsOptionss = document.querySelector('.selectbox:nth-child(2) .options'
 const candidateCardss = document.querySelectorAll('.wrapper');
 const jobTitleBtnnn = document.querySelector('.selectbox:first-child button');
 const cardElementss = document.querySelectorAll('.wrapper');
+import { displaySkillsForJobTitle } from "../../../PUBLIC/JS/RH_JS/ImplementationData.js"
+//  default 
+
+
+const getPramInit = async () =>{ 
+
+	const res = await fetch('../../../PUBLIC/util/senParmInit.php')
+	const data  = await  res.json();
+	const selectedJobTitle = data.post.poste.trim().toLowerCase();
+	console.log(selectedJobTitle)
+
+	jobTitleBtnnn.textContent = selectedJobTitle  ;
+	// Iterer Sur les  card  et afficher ou hide les cards en se basant sur les job selectionnes
+	displaySkillsForJobTitle('web developer')
+
+	cardElementss.forEach((cardElement) => {
+
+		const cardJobTitle = cardElement.dataset.jobtitle.toLowerCase();
+		if (selectedJobTitle === 'tout' || selectedJobTitle.includes(cardJobTitle)) {
+			cardElement.style.display = 'block';
+			console.log('first');
+		} else {
+			cardElement.style.display = 'none';
+		}
+	});
+}
+getPramInit();	
+
+
+// const selectedJobTitle = jobTitleBtnnn.textContent.trim().toLowerCase();
 
 jobTitleBtnnn.addEventListener('DOMSubtreeModified', () => {
 	// on prend le jobtitle selectionné
 	const selectedJobTitle = jobTitleBtnnn.textContent.trim().toLowerCase();
+	console.log(' Job title : ',selectedJobTitle)
 
 	// Iterer Sur les  card  et afficher ou hide les cards en se basant sur les job selectionnes
 	cardElementss.forEach((cardElement) => {
@@ -26,6 +57,10 @@ jobTitleBtnnn.addEventListener('DOMSubtreeModified', () => {
 		}
 	});
 });
+
+
+
+
 
 // Listener sur les skills selectionnes dans un filtre
 skillsOptionss.addEventListener('click', (event) => {

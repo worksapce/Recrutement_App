@@ -119,8 +119,15 @@ $file_name = $_FILES['photo']['name'];
       $stmt->execute();
       $isExist  = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // verify incrption 
+        $stmt = $conn->prepare('UPDATE `user` SET  `verified-inscription`=  \'1\' WHERE `ID-USER`= :iduser') ;
+        $stmt->bindValue(':iduser',$userId);
+        $stmt->execute();
 
-      $_SESSION["user"] = [
+
+
+        // set the user in the session 
+        $_SESSION["user"] = [
                               "id" => $isExist['ID-USER'], 
                               "fullName" => $isExist['Nom'].' '.$isExist['Prenom'],
                               "email"=>$isExist['email'],
@@ -129,15 +136,7 @@ $file_name = $_FILES['photo']['name'];
                           
 
         header("Location: ../RH_views/RecruteurPage.php");
-
-
-
 }
-
-
-
-
-
 
 
 ?>

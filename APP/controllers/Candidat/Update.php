@@ -3,7 +3,7 @@
   require '../../models/Affiche.php';
     
 //ouvrir la session
-session_start();
+@session_start();
 $id=$_SESSION['id_candidat'];
 
 

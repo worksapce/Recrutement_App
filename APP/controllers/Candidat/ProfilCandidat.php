@@ -77,14 +77,28 @@ $result5 = $conn->conn->query($sql4);
 $langue_score=0 ;
 $lang=0;
 $cou=0;
-while($row = $result4->fetch()) { 
-       $degre=$row["degre"]; 
+// while($row = $result4->fetch()) { 
+//        $degre=$row["degre"]; 
         
-        if($degre=="Moyenne") $cou=2;
-        if($degre=="Faible") $cou=3;
-        if($degre=="Elevé") $cou=5;
-        $lang+=$cou;
-   }
+//         if($degre=="Moyenne") $cou=2;
+//         if($degre=="Faible") $cou=3;
+//         if($degre=="Elevé") $cou=5;
+//         $lang+=$cou;
+//    }
+
+
+while($row = $result4->fetch()) { 
+    $degre=$row["degre"]; 
+     
+     if($degre=="Moyenne"||$degre=='moyenne'||$degre=="moyen"||$degre=="courant") $cou=3;
+     if($degre=="Faible"||$degre=='faible'||$degre=="familier") $cou=2;
+     if($degre=="Elevé"||$degre=="elevé"||$degre=="soutenu") $cou=5;
+     $lang+=$cou;
+}
+//dans le cas ou il a saisi degre autre si dessus prend 1 pour que le score de langue 
+if($lang==0) $lang=1;
+
+
    ///////////
    $langue_score_inter=$lang/ $result4->rowCount() ;
     $langue_score=($langue_score_inter*$result4->rowCount() )/3;

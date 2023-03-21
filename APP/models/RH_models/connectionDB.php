@@ -1,6 +1,6 @@
 <?php
  $host = "localhost";
-$port = '3306';
+$port = '3308';
     $dbname = "recrutementdb";
     $username = "root";
     $password = "";
@@ -196,4 +196,16 @@ $port = '3306';
                 return $photoData;
             }
             
-           
+    function getParamInit($idRh){ 
+        global $con;
+
+            // prepare and execute query
+            $stmt = $con->prepare("SELECT `poste` FROM `poste-rechercher-initial` WHERE id_RH=:idRh;");
+            $stmt->bindParam(":idRh", $idRh);
+            $stmt->execute();
+
+            // fetch result
+            $post = $stmt->fetch();
+            return $post;
+            
+} 

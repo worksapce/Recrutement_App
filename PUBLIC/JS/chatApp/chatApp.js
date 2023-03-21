@@ -275,7 +275,7 @@ const GetMessages = async (sender, receiver,image) => {
     ConversationContainer.innerHTML = ''
     RenderMessages(groupedMessages, fullName,IdReceiver,image);
   } else {
-    alert(data.msg);
+    // alert(data.msg);
   }
 };
 

@@ -20,8 +20,8 @@ const infoTableau = [matches[1], matches[2], matches[3], matches[4], matches[5],
 
 
 
-document.getElementById("nom").value = infoTableau[0];
-document.getElementById("prenom").value = infoTableau[1];
+// document.getElementById("nom").value = infoTableau[0];
+// document.getElementById("prenom").value = infoTableau[1];
 document.getElementById("email").value = infoTableau[2];
 document.getElementById("adresse").value = infoTableau[3];
 document.getElementById("tel").value = infoTableau[4];

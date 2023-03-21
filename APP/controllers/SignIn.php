@@ -52,6 +52,8 @@ if($formData && isset($formData['email'], $formData['password'])){
                     }else{ 
                         session_start();
                         $_SESSION["id"] = $isExist['ID-USER'];
+                        $_SESSION['Nom'] = $isExist['Nom'];
+                        $_SESSION['Prenom'] = $isExist['Prenom'];
 
                         $status  = 200;
                         $response = [ 

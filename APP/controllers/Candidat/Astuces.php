@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 $monTableau = $_SESSION['monTableau'];
 
 $scol_score = $monTableau['scol_score'];

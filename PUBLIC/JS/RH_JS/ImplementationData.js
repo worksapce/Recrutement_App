@@ -44,7 +44,9 @@ jobTitleOptions.addEventListener('click', (event) => {
 });
 
 //  fonction qui prend le jobtitle selectionne est affiche les  dropdown skills content selon le selection du job
+
 function displaySkillsForJobTitle(selectedJobTitle) {
+
 	skillsOptions.innerHTML = '';
 	jobTitles.forEach((job) => {
 		if (job.title === selectedJobTitle) {
@@ -76,3 +78,7 @@ function displaySkillsForJobTitle(selectedJobTitle) {
 		});
 	});
 }
+
+
+
+export {  displaySkillsForJobTitle } 

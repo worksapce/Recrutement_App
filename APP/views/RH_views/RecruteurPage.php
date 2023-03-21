@@ -165,14 +165,14 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <script src="../../../PUBLIC/JS/RH_JS/RechercheFilter.js?php echo time(); ?>"></script>
-    <script src="../../../PUBLIC/JS/RH_JS/ImplementationData.js?php echo time(); ?>"></script>
+    <script type="module"  src="../../../PUBLIC/JS/RH_JS/ImplementationData.js?php echo time(); ?>"></script>
     <script src="../../../PUBLIC/JS/RH_JS/TrierScore.js?php echo time(); ?>"></script>
 
     <script src="../../../PUBLIC/JS/RH_JS/BarRecherche.js?php echo time(); ?>"></script>
     <script src="../../../PUBLIC/JS/RH_JS/listeners.js?php echo time(); ?>"></script>
 
     <script defer    src="../../controllers/RH_controller/Displayinfo.js?php echo time(); ?>"></script>
-    <script     src="../../controllers/RH_controller/FilterCandidat.js?php echo time(); ?>"></script>
+    <script  type="module"    src="../../controllers/RH_controller/FilterCandidat.js?php echo time(); ?>"></script>
 
 
 

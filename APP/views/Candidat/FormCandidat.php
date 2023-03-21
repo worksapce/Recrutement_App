@@ -1,9 +1,12 @@
 
 
-
-
 <?php require 'C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/FormCandidat.php';
- require "C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/Donwloadcv.php"
+ require "C:/xampp/htdocs/Recrutement_App/APP/controllers/Candidat/Donwloadcv.php";
+
+        @session_start();
+$userId = $_SESSION['id'];
+    $Nom = $_SESSION['Nom'] ;
+    $Prenom = $_SESSION['Prenom'] ;
 ?>
 
 <!DOCTYPE html>
@@ -57,19 +60,8 @@
         <div class="fieldset"> 
             <div class="ligne">
                 
-               <input type="text" name="nom" placeholder="entrer votre nom"  id="nom" >
-                <input type="text"  name="prenom" placeholder="entrer votre prenom" id="prenom"> 
-                <!-- <input style="visibility: hidden;" disabled type="text" name="cv" placeholder="entrer votre prenom" id="prenom" value="     />  -->
-                <!-- <input style="visibility:hidden;" disabled type="text" name="cv" placeholder="entrer votre prenom" id="prenom" value="<?php 
-                    
-                 //   function cv($contenu_pdf){ 
-                 //       return $contenu_pdf;
-                 //   }
-                 // echo cv($contenu_pdf)
-
-                ?>" /> -->
-
-
+               <input type="text" name="nom" placeholder="entrer votre nom" value=<?php echo $Nom ?>   id="nom" >
+                <input type="text"  name="prenom" placeholder="entrer votre prenom" value=<?php echo $Prenom ?>   id="prenom"> 
             </div>
             <br> 
             <div class="info">

@@ -3,16 +3,15 @@
 
 use PHPMailer\Test\OAuth\DummyOauthProvider;
 
-session_start();
+
+//importer affiche qui contient les requee
+include '../../models/Affiche.php';
+include '../../controllers/Candidat/Donwloadcv.php';
+
+
+@session_start();
 
 $userId = $_SESSION['id'];
-
-
-
- //importer affiche qui contient les requee
-    include '../../models/Affiche.php';
-    include '../../controllers/Candidat/Donwloadcv.php';
-
 
 
 
@@ -24,6 +23,14 @@ $sql = "SELECT MAX(id_candidat) as max_count FROM client";
 if(!$sql)  $count=0;
 $stmt = $conn->conn->prepare($sql);
 $stmt->execute();
+
+
+// candidat infor
+$Nom = $_SESSION['Nom'] ;
+$Prenom = $_SESSION['Prenom'] ;
+
+
+
 
 
 $ff=$_SESSION['contenu_pdf'];
@@ -59,7 +66,7 @@ $ff=$_SESSION['contenu_pdf'];
     $date_fin_scolaire=$_POST['date-fine-scolaire'];
     $competance=$_POST['skill'];
     $poste_actuel=$_POST['poste_actuel'];
-    $cv=$_POST['cv'];
+    // $cv=$_POST['cv'];
 
 
 
